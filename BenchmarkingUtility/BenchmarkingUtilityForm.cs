@@ -121,7 +121,7 @@ namespace BenchmarkingUtility
         {
             radiochoice = 4;
         }
-        *
+        
         private void scriptviewer_Button_Click(object sender, EventArgs e)
         {
             string x = scriptviewer_ComboBox.Text;

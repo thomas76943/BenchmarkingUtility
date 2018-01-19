@@ -23,7 +23,7 @@ namespace BenchmarkingUtility
             //Window has a fixed size and the maximise button is disabled
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Text = "Benchmarking Utility";
+            this.Text = "Benchmarking Utility1";
         }
 
         private void run_button_Click(object sender, EventArgs e)

@@ -53,7 +53,7 @@ namespace BenchmarkingUtility
             {
                 Console.WriteLine("Failed");
             }
-            return "Failed12";
+            return "Failed123";
         }
 
         public static void RunCS()

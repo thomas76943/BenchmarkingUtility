@@ -16,3 +16,6 @@ C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\Benchmarking_Project_-_C
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\Benchmarking_Project_-_C#_Version\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.BenchmarkingUtilityForm.resources
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\Benchmarking_Project_-_C#_Version\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.Properties.Resources.resources
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\Benchmarking_Project_-_C#_Version\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.csproj.GenerateResource.Cache
+C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\BenchmarkingUtility.exe.config
+C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.exe
+C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.pdb

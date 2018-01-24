@@ -15,7 +15,7 @@ namespace BenchmarkingUtility
         //File Paths for Algorithms
         public static string[] cpupaths = Directory.GetFiles(Path.Combine(Application.StartupPath, @"CPUAlgorithms\"));
         public static string[] gpupaths = Directory.GetFiles(Path.Combine(Application.StartupPath, @"GPUAlgorithms\"));
-
+        ///
         /// <summary>
         /// Runs and Retreives output of Python scripts
         /// </summary>

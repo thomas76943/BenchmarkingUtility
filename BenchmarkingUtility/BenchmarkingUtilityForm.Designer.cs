@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BenchmarkingUtilityForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gpuoutput_Label = new System.Windows.Forms.Label();
@@ -47,7 +46,6 @@
             this.cpumake_Label = new System.Windows.Forms.Label();
             this.cpuid_Label = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.scriptviewer_Button = new System.Windows.Forms.Button();
             this.gpuscript_TextBox = new System.Windows.Forms.RichTextBox();
             this.cpuscript_TextBox = new System.Windows.Forms.RichTextBox();
             this.scriptviewer_ComboBox = new System.Windows.Forms.ComboBox();
@@ -178,10 +176,10 @@
             this.algorithm2_Radio.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.algorithm2_Radio.Location = new System.Drawing.Point(10, 31);
             this.algorithm2_Radio.Name = "algorithm2_Radio";
-            this.algorithm2_Radio.Size = new System.Drawing.Size(121, 22);
+            this.algorithm2_Radio.Size = new System.Drawing.Size(50, 22);
             this.algorithm2_Radio.TabIndex = 1;
             this.algorithm2_Radio.TabStop = true;
-            this.algorithm2_Radio.Text = "Algorithm 2";
+            this.algorithm2_Radio.Text = "C#";
             this.algorithm2_Radio.UseVisualStyleBackColor = true;
             this.algorithm2_Radio.Click += new System.EventHandler(this.algorithm2_Radio_Click);
             // 
@@ -262,7 +260,6 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.scriptviewer_Button);
             this.tabPage3.Controls.Add(this.gpuscript_TextBox);
             this.tabPage3.Controls.Add(this.cpuscript_TextBox);
             this.tabPage3.Controls.Add(this.scriptviewer_ComboBox);
@@ -274,15 +271,6 @@
             this.tabPage3.Text = "viewer";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // scriptviewer_Button
-            // 
-            this.scriptviewer_Button.Location = new System.Drawing.Point(177, 7);
-            this.scriptviewer_Button.Name = "scriptviewer_Button";
-            this.scriptviewer_Button.Size = new System.Drawing.Size(75, 23);
-            this.scriptviewer_Button.TabIndex = 3;
-            this.scriptviewer_Button.Text = "button2";
-            this.scriptviewer_Button.UseVisualStyleBackColor = true;
-            // 
             // gpuscript_TextBox
             // 
             this.gpuscript_TextBox.Location = new System.Drawing.Point(314, 33);
@@ -290,7 +278,7 @@
             this.gpuscript_TextBox.ReadOnly = true;
             this.gpuscript_TextBox.Size = new System.Drawing.Size(305, 358);
             this.gpuscript_TextBox.TabIndex = 2;
-            this.gpuscript_TextBox.Text = resources.GetString("gpuscript_TextBox.Text");
+            this.gpuscript_TextBox.Text = "";
             // 
             // cpuscript_TextBox
             // 
@@ -299,20 +287,17 @@
             this.cpuscript_TextBox.ReadOnly = true;
             this.cpuscript_TextBox.Size = new System.Drawing.Size(305, 358);
             this.cpuscript_TextBox.TabIndex = 1;
-            this.cpuscript_TextBox.Text = resources.GetString("cpuscript_TextBox.Text");
+            this.cpuscript_TextBox.Text = "";
             // 
             // scriptviewer_ComboBox
             // 
+            this.scriptviewer_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.scriptviewer_ComboBox.FormattingEnabled = true;
-            this.scriptviewer_ComboBox.Items.AddRange(new object[] {
-            "Python + PyCUDA",
-            "Algorithm 2",
-            "Algorithm 3",
-            "Algorithm 4"});
             this.scriptviewer_ComboBox.Location = new System.Drawing.Point(3, 6);
             this.scriptviewer_ComboBox.Name = "scriptviewer_ComboBox";
             this.scriptviewer_ComboBox.Size = new System.Drawing.Size(168, 24);
             this.scriptviewer_ComboBox.TabIndex = 0;
+            this.scriptviewer_ComboBox.SelectedValueChanged += new System.EventHandler(this.scriptviewer_ComboBox_SelectedValueChanged);
             // 
             // tabPage4
             // 
@@ -430,7 +415,6 @@
         private System.Windows.Forms.Label cpumake_Label;
         private System.Windows.Forms.Label cpuid_Label;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button scriptviewer_Button;
     }
 }
 

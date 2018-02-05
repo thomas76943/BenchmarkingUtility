@@ -16,6 +16,7 @@ namespace BenchmarkingUtility
     public partial class BenchmarkingUtilityForm : Form
     {
         int radiochoice = 1;
+        List<string> comboOptions = new List<string>() { "Python + PyCUDA", "C#", "3", "4" };
 
         public BenchmarkingUtilityForm()
         {
@@ -24,6 +25,13 @@ namespace BenchmarkingUtility
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Text = "Benchmarking Utility1";
+
+            for (int i = 0; i < 4; i++)
+            {
+                scriptviewer_ComboBox.Items.Add(comboOptions[i]);
+            }
+
+            scriptviewer_ComboBox.SelectedIndex = 0;
         }
 
         private void run_button_Click(object sender, EventArgs e)
@@ -59,6 +67,7 @@ namespace BenchmarkingUtility
                         break;
                     case "cs":
                         Console.WriteLine("C# - CPU Running");
+                        cpuoutput = Algorithms.RunCS(Algorithms.cpupaths[radiochoice - 1]);
                         break;
                     case "java":
                         Console.WriteLine("Java - CPU Running");
@@ -82,6 +91,7 @@ namespace BenchmarkingUtility
                         gpuoutput = Algorithms.RunPython(pythondir_textbox.Text, Algorithms.gpupaths[radiochoice - 1]);
                         break;
                     case "cs":
+                        gpuoutput = Algorithms.RunCS(Algorithms.gpupaths[radiochoice - 1]);
                         break;
                     case "java":
                         break;
@@ -121,15 +131,24 @@ namespace BenchmarkingUtility
         {
             radiochoice = 4;
         }
-        
-        private void scriptviewer_Button_Click(object sender, EventArgs e)
+
+        private void scriptviewer_ComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            string x = scriptviewer_ComboBox.Text;
-            if (x == "Python + PyCUDA")
+            cpuscript_TextBox.Text = "";
+            gpuscript_TextBox.Text = "";
+            
+            if (scriptviewer_ComboBox.Text == "Python + PyCUDA")
             {
-                cpuscript_TextBox.Text = File.ReadAllText(@"C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\Benchmarking_Project_-_C#_Version\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\CPUAlgorithms\CPUAlgorithm1.py");
-                gpuscript_TextBox.Text = File.ReadAllText(@"C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\Benchmarking_Project_-_C#_Version\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\GPUAlgorithms\GPUAlgorithm1.py");
+                cpuscript_TextBox.Text = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\CPUAlgorithms\CPUAlgorithm1.py");
+                gpuscript_TextBox.Text = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\GPUAlgorithms\GPUAlgorithm1.py");
             }
+
+            if (scriptviewer_ComboBox.Text == "C#")
+            {
+                cpuscript_TextBox.Text = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\CPUAlgorithms\CPUAlgorithm2.cs");
+                gpuscript_TextBox.Text = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\GPUAlgorithms\GPUAlgorithm2.cs");
+            }
+
         }
     }
 }

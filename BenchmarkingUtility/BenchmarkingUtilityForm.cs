@@ -150,5 +150,22 @@ namespace BenchmarkingUtility
             }
 
         }
+
+        private void BenchmarkingUtilityForm_Load(object sender, EventArgs e)
+        {
+            graphtimer.Start();
+        }
+
+        private void graphtimer_Tick(object sender, EventArgs e)
+        {
+            float cpu_f = PC_CPU.NextValue();
+            float gpu_f = PC_GPU.NextValue();
+
+            cpu_progressbar.Value = (int)cpu_f;
+            gpu_progressbar.Value = (int)gpu_f;
+
+            cpu_percentage1.Text = string.Format("{0:0.00}%", cpu_f);
+            gpu_percentage1.Text = string.Format("{0:0.00}%", gpu_f);
+        }
     }
 }

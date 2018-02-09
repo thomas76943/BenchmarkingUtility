@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gpuoutput_Label = new System.Windows.Forms.Label();
@@ -55,11 +56,23 @@
             this.textfilewrite_Checkbox = new System.Windows.Forms.CheckBox();
             this.gpu_Checkbox = new System.Windows.Forms.CheckBox();
             this.cpu_Checkbox = new System.Windows.Forms.CheckBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.PC_CPU = new System.Diagnostics.PerformanceCounter();
+            this.PC_GPU = new System.Diagnostics.PerformanceCounter();
+            this.graphtimer = new System.Windows.Forms.Timer(this.components);
+            this.cpu_progressbar = new System.Windows.Forms.ProgressBar();
+            this.cpu_nametag1 = new System.Windows.Forms.Label();
+            this.gpu_nametag1 = new System.Windows.Forms.Label();
+            this.gpu_progressbar = new System.Windows.Forms.ProgressBar();
+            this.cpu_percentage1 = new System.Windows.Forms.Label();
+            this.gpu_percentage1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PC_CPU)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -69,8 +82,9 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.ItemSize = new System.Drawing.Size(148, 35);
+            this.tabControl1.ItemSize = new System.Drawing.Size(116, 35);
             this.tabControl1.Location = new System.Drawing.Point(-1, -1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -82,6 +96,12 @@
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.gpu_percentage1);
+            this.tabPage1.Controls.Add(this.cpu_percentage1);
+            this.tabPage1.Controls.Add(this.gpu_nametag1);
+            this.tabPage1.Controls.Add(this.gpu_progressbar);
+            this.tabPage1.Controls.Add(this.cpu_nametag1);
+            this.tabPage1.Controls.Add(this.cpu_progressbar);
             this.tabPage1.Controls.Add(this.gpuoutput_Label);
             this.tabPage1.Controls.Add(this.cpuoutput_Label);
             this.tabPage1.Controls.Add(this.run_button);
@@ -365,15 +385,91 @@
             this.cpu_Checkbox.Text = "Run CPU Benchmarks";
             this.cpu_Checkbox.UseVisualStyleBackColor = true;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(4, 39);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(626, 387);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "results";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // PC_CPU
+            // 
+            this.PC_CPU.CategoryName = "Processor";
+            this.PC_CPU.CounterName = "% Processor Time";
+            this.PC_CPU.InstanceName = "_Total";
+            // 
+            // PC_GPU
+            // 
+            this.PC_GPU.CategoryName = "Thread";
+            this.PC_GPU.CounterName = "Utilization Percentage";
+            this.PC_GPU.InstanceName = "_Total";
+            // 
+            // graphtimer
+            // 
+            this.graphtimer.Interval = 1000;
+            this.graphtimer.Tick += new System.EventHandler(this.graphtimer_Tick);
+            // 
+            // cpu_progressbar
+            // 
+            this.cpu_progressbar.Location = new System.Drawing.Point(376, 283);
+            this.cpu_progressbar.Name = "cpu_progressbar";
+            this.cpu_progressbar.Size = new System.Drawing.Size(137, 23);
+            this.cpu_progressbar.TabIndex = 11;
+            // 
+            // cpu_nametag1
+            // 
+            this.cpu_nametag1.AutoSize = true;
+            this.cpu_nametag1.Location = new System.Drawing.Point(325, 290);
+            this.cpu_nametag1.Name = "cpu_nametag1";
+            this.cpu_nametag1.Size = new System.Drawing.Size(36, 16);
+            this.cpu_nametag1.TabIndex = 12;
+            this.cpu_nametag1.Text = "CPU";
+            // 
+            // gpu_nametag1
+            // 
+            this.gpu_nametag1.AutoSize = true;
+            this.gpu_nametag1.Location = new System.Drawing.Point(325, 334);
+            this.gpu_nametag1.Name = "gpu_nametag1";
+            this.gpu_nametag1.Size = new System.Drawing.Size(37, 16);
+            this.gpu_nametag1.TabIndex = 14;
+            this.gpu_nametag1.Text = "GPU";
+            // 
+            // gpu_progressbar
+            // 
+            this.gpu_progressbar.Location = new System.Drawing.Point(376, 327);
+            this.gpu_progressbar.Name = "gpu_progressbar";
+            this.gpu_progressbar.Size = new System.Drawing.Size(137, 23);
+            this.gpu_progressbar.TabIndex = 13;
+            // 
+            // cpu_percentage1
+            // 
+            this.cpu_percentage1.AutoSize = true;
+            this.cpu_percentage1.Location = new System.Drawing.Point(528, 290);
+            this.cpu_percentage1.Name = "cpu_percentage1";
+            this.cpu_percentage1.Size = new System.Drawing.Size(27, 16);
+            this.cpu_percentage1.TabIndex = 15;
+            this.cpu_percentage1.Text = "0%";
+            // 
+            // gpu_percentage1
+            // 
+            this.gpu_percentage1.AutoSize = true;
+            this.gpu_percentage1.Location = new System.Drawing.Point(528, 334);
+            this.gpu_percentage1.Name = "gpu_percentage1";
+            this.gpu_percentage1.Size = new System.Drawing.Size(27, 16);
+            this.gpu_percentage1.TabIndex = 16;
+            this.gpu_percentage1.Text = "0%";
+            // 
             // BenchmarkingUtilityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.tabControl1);
             this.Name = "BenchmarkingUtilityForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.BenchmarkingUtilityForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -382,6 +478,8 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PC_CPU)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -415,6 +513,16 @@
         private System.Windows.Forms.Label cpumake_Label;
         private System.Windows.Forms.Label cpuid_Label;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Diagnostics.PerformanceCounter PC_CPU;
+        private System.Windows.Forms.Label cpu_nametag1;
+        private System.Windows.Forms.ProgressBar cpu_progressbar;
+        private System.Diagnostics.PerformanceCounter PC_GPU;
+        private System.Windows.Forms.Timer graphtimer;
+        private System.Windows.Forms.Label gpu_nametag1;
+        private System.Windows.Forms.ProgressBar gpu_progressbar;
+        private System.Windows.Forms.Label gpu_percentage1;
+        private System.Windows.Forms.Label cpu_percentage1;
     }
 }
 

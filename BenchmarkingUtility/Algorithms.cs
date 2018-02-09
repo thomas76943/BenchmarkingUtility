@@ -28,7 +28,6 @@ namespace BenchmarkingUtility
             {
                 //Initialise Path to be Used by The Process [Combines Python Script with Python Directory to Launch Benchmark]
                 string path = Path.Combine(pythondirectory, "python.exe");
-
                 //Relevant Startup Options are Defined [No Shell, No Window, Output Redirected etc]
                 ProcessStartInfo psi = new ProcessStartInfo();
                 psi.UseShellExecute = false;
@@ -37,7 +36,6 @@ namespace BenchmarkingUtility
                 psi.Arguments = pythonfile;
                 psi.RedirectStandardError = true;
                 psi.CreateNoWindow = true;
-
                 //Python Process Starts - Reads and Returns Script's Output [in addition to Standard Error]
                 using (Process p = Process.Start(psi))
                 {
@@ -66,10 +64,8 @@ namespace BenchmarkingUtility
                 psi.FileName = "CSharpCompiledCode.exe";
                 psi.RedirectStandardError = true;
                 psi.CreateNoWindow = true;
-
                 using (Process p = Process.Start(psi))
                 {
-                    //string stderr = p.StandardError.ReadToEnd();
                     string finaloutput = p.StandardOutput.ReadToEnd();
                     Debug.WriteLine(finaloutput);
                     return finaloutput;

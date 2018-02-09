@@ -9,15 +9,17 @@ def VectorAdd(a,b,c):
         c[i] = a[i] + b[i]
 
 def main():
-    N=32000000
-    A=np.ones(N,dtype=np.float32)
-    B=np.ones(N,dtype=np.float32)
-    C=np.zeros(N,dtype=np.float32)
 
     start = timer()
-    VectorAdd(A,B,C)
-    vectoradd_time = timer() - start
 
+    for x in range(5):
+        N=32000000
+        A=np.ones(N,dtype=np.float32)
+        B=np.ones(N,dtype=np.float32)
+        C=np.zeros(N,dtype=np.float32)
+        VectorAdd(A, B, C)
+
+    vectoradd_time = timer() - start
     print("C[:5] = " + str(C[:5]))
     print("C[-5:] = " + str(C[-5:]))
 

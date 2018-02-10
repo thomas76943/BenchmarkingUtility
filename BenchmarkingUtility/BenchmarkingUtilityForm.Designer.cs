@@ -31,15 +31,17 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.gpu_percentage1 = new System.Windows.Forms.Label();
+            this.cpu_percentage1 = new System.Windows.Forms.Label();
+            this.gpu_nametag1 = new System.Windows.Forms.Label();
+            this.gpu_progressbar = new System.Windows.Forms.ProgressBar();
+            this.cpu_nametag1 = new System.Windows.Forms.Label();
+            this.cpu_progressbar = new System.Windows.Forms.ProgressBar();
             this.gpuoutput_Label = new System.Windows.Forms.Label();
             this.cpuoutput_Label = new System.Windows.Forms.Label();
             this.run_button = new System.Windows.Forms.Button();
             this.gpu_Label = new System.Windows.Forms.Label();
             this.cpu_Label = new System.Windows.Forms.Label();
-            this.algorithm4_Radio = new System.Windows.Forms.RadioButton();
-            this.algorithm3_Radio = new System.Windows.Forms.RadioButton();
-            this.algorithm2_Radio = new System.Windows.Forms.RadioButton();
-            this.algorithm1_Radio = new System.Windows.Forms.RadioButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.memory_Label = new System.Windows.Forms.Label();
@@ -60,12 +62,7 @@
             this.PC_CPU = new System.Diagnostics.PerformanceCounter();
             this.PC_GPU = new System.Diagnostics.PerformanceCounter();
             this.graphtimer = new System.Windows.Forms.Timer(this.components);
-            this.cpu_progressbar = new System.Windows.Forms.ProgressBar();
-            this.cpu_nametag1 = new System.Windows.Forms.Label();
-            this.gpu_nametag1 = new System.Windows.Forms.Label();
-            this.gpu_progressbar = new System.Windows.Forms.ProgressBar();
-            this.cpu_percentage1 = new System.Windows.Forms.Label();
-            this.gpu_percentage1 = new System.Windows.Forms.Label();
+            this.gui_BackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -107,16 +104,62 @@
             this.tabPage1.Controls.Add(this.run_button);
             this.tabPage1.Controls.Add(this.gpu_Label);
             this.tabPage1.Controls.Add(this.cpu_Label);
-            this.tabPage1.Controls.Add(this.algorithm4_Radio);
-            this.tabPage1.Controls.Add(this.algorithm3_Radio);
-            this.tabPage1.Controls.Add(this.algorithm2_Radio);
-            this.tabPage1.Controls.Add(this.algorithm1_Radio);
             this.tabPage1.Location = new System.Drawing.Point(4, 39);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(626, 387);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "home";
+            // 
+            // gpu_percentage1
+            // 
+            this.gpu_percentage1.AutoSize = true;
+            this.gpu_percentage1.Location = new System.Drawing.Point(481, 358);
+            this.gpu_percentage1.Name = "gpu_percentage1";
+            this.gpu_percentage1.Size = new System.Drawing.Size(27, 16);
+            this.gpu_percentage1.TabIndex = 16;
+            this.gpu_percentage1.Text = "0%";
+            // 
+            // cpu_percentage1
+            // 
+            this.cpu_percentage1.AutoSize = true;
+            this.cpu_percentage1.Location = new System.Drawing.Point(200, 358);
+            this.cpu_percentage1.Name = "cpu_percentage1";
+            this.cpu_percentage1.Size = new System.Drawing.Size(27, 16);
+            this.cpu_percentage1.TabIndex = 15;
+            this.cpu_percentage1.Text = "0%";
+            // 
+            // gpu_nametag1
+            // 
+            this.gpu_nametag1.AutoSize = true;
+            this.gpu_nametag1.Location = new System.Drawing.Point(295, 358);
+            this.gpu_nametag1.Name = "gpu_nametag1";
+            this.gpu_nametag1.Size = new System.Drawing.Size(37, 16);
+            this.gpu_nametag1.TabIndex = 14;
+            this.gpu_nametag1.Text = "GPU";
+            // 
+            // gpu_progressbar
+            // 
+            this.gpu_progressbar.Location = new System.Drawing.Point(338, 353);
+            this.gpu_progressbar.Name = "gpu_progressbar";
+            this.gpu_progressbar.Size = new System.Drawing.Size(137, 28);
+            this.gpu_progressbar.TabIndex = 13;
+            // 
+            // cpu_nametag1
+            // 
+            this.cpu_nametag1.AutoSize = true;
+            this.cpu_nametag1.Location = new System.Drawing.Point(15, 358);
+            this.cpu_nametag1.Name = "cpu_nametag1";
+            this.cpu_nametag1.Size = new System.Drawing.Size(36, 16);
+            this.cpu_nametag1.TabIndex = 12;
+            this.cpu_nametag1.Text = "CPU";
+            // 
+            // cpu_progressbar
+            // 
+            this.cpu_progressbar.Location = new System.Drawing.Point(57, 353);
+            this.cpu_progressbar.Name = "cpu_progressbar";
+            this.cpu_progressbar.Size = new System.Drawing.Size(137, 28);
+            this.cpu_progressbar.TabIndex = 11;
             // 
             // gpuoutput_Label
             // 
@@ -149,7 +192,7 @@
             // 
             this.gpu_Label.AutoSize = true;
             this.gpu_Label.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpu_Label.Location = new System.Drawing.Point(275, 153);
+            this.gpu_Label.Location = new System.Drawing.Point(295, 153);
             this.gpu_Label.Name = "gpu_Label";
             this.gpu_Label.Size = new System.Drawing.Size(42, 18);
             this.gpu_Label.TabIndex = 7;
@@ -164,58 +207,6 @@
             this.cpu_Label.Size = new System.Drawing.Size(41, 18);
             this.cpu_Label.TabIndex = 6;
             this.cpu_Label.Text = "CPU";
-            // 
-            // algorithm4_Radio
-            // 
-            this.algorithm4_Radio.AutoSize = true;
-            this.algorithm4_Radio.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.algorithm4_Radio.Location = new System.Drawing.Point(10, 79);
-            this.algorithm4_Radio.Name = "algorithm4_Radio";
-            this.algorithm4_Radio.Size = new System.Drawing.Size(121, 22);
-            this.algorithm4_Radio.TabIndex = 3;
-            this.algorithm4_Radio.Text = "Algorithm 4";
-            this.algorithm4_Radio.UseVisualStyleBackColor = true;
-            this.algorithm4_Radio.Click += new System.EventHandler(this.algorithm4_Radio_Click);
-            // 
-            // algorithm3_Radio
-            // 
-            this.algorithm3_Radio.AutoSize = true;
-            this.algorithm3_Radio.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.algorithm3_Radio.Location = new System.Drawing.Point(10, 55);
-            this.algorithm3_Radio.Name = "algorithm3_Radio";
-            this.algorithm3_Radio.Size = new System.Drawing.Size(121, 22);
-            this.algorithm3_Radio.TabIndex = 2;
-            this.algorithm3_Radio.TabStop = true;
-            this.algorithm3_Radio.Text = "Algorithm 3";
-            this.algorithm3_Radio.UseVisualStyleBackColor = true;
-            this.algorithm3_Radio.Click += new System.EventHandler(this.algorithm3_Radio_Click);
-            // 
-            // algorithm2_Radio
-            // 
-            this.algorithm2_Radio.AutoSize = true;
-            this.algorithm2_Radio.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.algorithm2_Radio.Location = new System.Drawing.Point(10, 31);
-            this.algorithm2_Radio.Name = "algorithm2_Radio";
-            this.algorithm2_Radio.Size = new System.Drawing.Size(50, 22);
-            this.algorithm2_Radio.TabIndex = 1;
-            this.algorithm2_Radio.TabStop = true;
-            this.algorithm2_Radio.Text = "C#";
-            this.algorithm2_Radio.UseVisualStyleBackColor = true;
-            this.algorithm2_Radio.Click += new System.EventHandler(this.algorithm2_Radio_Click);
-            // 
-            // algorithm1_Radio
-            // 
-            this.algorithm1_Radio.AutoSize = true;
-            this.algorithm1_Radio.Checked = true;
-            this.algorithm1_Radio.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.algorithm1_Radio.Location = new System.Drawing.Point(10, 7);
-            this.algorithm1_Radio.Name = "algorithm1_Radio";
-            this.algorithm1_Radio.Size = new System.Drawing.Size(172, 22);
-            this.algorithm1_Radio.TabIndex = 0;
-            this.algorithm1_Radio.TabStop = true;
-            this.algorithm1_Radio.Text = "Python + PyCUDA";
-            this.algorithm1_Radio.UseVisualStyleBackColor = true;
-            this.algorithm1_Radio.Click += new System.EventHandler(this.algorithm1_Radio_Click);
             // 
             // tabPage2
             // 
@@ -317,7 +308,6 @@
             this.scriptviewer_ComboBox.Name = "scriptviewer_ComboBox";
             this.scriptviewer_ComboBox.Size = new System.Drawing.Size(168, 24);
             this.scriptviewer_ComboBox.TabIndex = 0;
-            this.scriptviewer_ComboBox.SelectedValueChanged += new System.EventHandler(this.scriptviewer_ComboBox_SelectedValueChanged);
             // 
             // tabPage4
             // 
@@ -402,7 +392,7 @@
             // 
             // PC_GPU
             // 
-            this.PC_GPU.CategoryName = "Thread";
+            this.PC_GPU.CategoryName = "GPU Engine";
             this.PC_GPU.CounterName = "Utilization Percentage";
             this.PC_GPU.InstanceName = "_Total";
             // 
@@ -411,55 +401,10 @@
             this.graphtimer.Interval = 1000;
             this.graphtimer.Tick += new System.EventHandler(this.graphtimer_Tick);
             // 
-            // cpu_progressbar
+            // gui_BackgroundWorker
             // 
-            this.cpu_progressbar.Location = new System.Drawing.Point(376, 283);
-            this.cpu_progressbar.Name = "cpu_progressbar";
-            this.cpu_progressbar.Size = new System.Drawing.Size(137, 23);
-            this.cpu_progressbar.TabIndex = 11;
-            // 
-            // cpu_nametag1
-            // 
-            this.cpu_nametag1.AutoSize = true;
-            this.cpu_nametag1.Location = new System.Drawing.Point(325, 290);
-            this.cpu_nametag1.Name = "cpu_nametag1";
-            this.cpu_nametag1.Size = new System.Drawing.Size(36, 16);
-            this.cpu_nametag1.TabIndex = 12;
-            this.cpu_nametag1.Text = "CPU";
-            // 
-            // gpu_nametag1
-            // 
-            this.gpu_nametag1.AutoSize = true;
-            this.gpu_nametag1.Location = new System.Drawing.Point(325, 334);
-            this.gpu_nametag1.Name = "gpu_nametag1";
-            this.gpu_nametag1.Size = new System.Drawing.Size(37, 16);
-            this.gpu_nametag1.TabIndex = 14;
-            this.gpu_nametag1.Text = "GPU";
-            // 
-            // gpu_progressbar
-            // 
-            this.gpu_progressbar.Location = new System.Drawing.Point(376, 327);
-            this.gpu_progressbar.Name = "gpu_progressbar";
-            this.gpu_progressbar.Size = new System.Drawing.Size(137, 23);
-            this.gpu_progressbar.TabIndex = 13;
-            // 
-            // cpu_percentage1
-            // 
-            this.cpu_percentage1.AutoSize = true;
-            this.cpu_percentage1.Location = new System.Drawing.Point(528, 290);
-            this.cpu_percentage1.Name = "cpu_percentage1";
-            this.cpu_percentage1.Size = new System.Drawing.Size(27, 16);
-            this.cpu_percentage1.TabIndex = 15;
-            this.cpu_percentage1.Text = "0%";
-            // 
-            // gpu_percentage1
-            // 
-            this.gpu_percentage1.AutoSize = true;
-            this.gpu_percentage1.Location = new System.Drawing.Point(528, 334);
-            this.gpu_percentage1.Name = "gpu_percentage1";
-            this.gpu_percentage1.Size = new System.Drawing.Size(27, 16);
-            this.gpu_percentage1.TabIndex = 16;
-            this.gpu_percentage1.Text = "0%";
+            this.gui_BackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.gui_BackgroundWorker_DoWork);
+            this.gui_BackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.gui_BackgroundWorker_RunWorkerCompleted);
             // 
             // BenchmarkingUtilityForm
             // 
@@ -491,10 +436,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.RadioButton algorithm4_Radio;
-        private System.Windows.Forms.RadioButton algorithm3_Radio;
-        private System.Windows.Forms.RadioButton algorithm2_Radio;
-        private System.Windows.Forms.RadioButton algorithm1_Radio;
         private System.Windows.Forms.Label gpu_Label;
         private System.Windows.Forms.Label cpu_Label;
         private System.Windows.Forms.Button run_button;
@@ -523,6 +464,7 @@
         private System.Windows.Forms.ProgressBar gpu_progressbar;
         private System.Windows.Forms.Label gpu_percentage1;
         private System.Windows.Forms.Label cpu_percentage1;
+        private System.ComponentModel.BackgroundWorker gui_BackgroundWorker;
     }
 }
 

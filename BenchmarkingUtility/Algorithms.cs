@@ -27,7 +27,8 @@ namespace BenchmarkingUtility
             try
             {
                 //Initialise Path to be Used by The Process [Combines Python Script with Python Directory to Launch Benchmark]
-                string path = Path.Combine(pythondirectory, "python.exe");
+                string path = Path.Combine(pythondirectory+"\\python.exe");
+                
                 //Relevant Startup Options are Defined [No Shell, No Window, Output Redirected etc]
                 ProcessStartInfo psi = new ProcessStartInfo();
                 psi.UseShellExecute = false;
@@ -52,7 +53,7 @@ namespace BenchmarkingUtility
             }
             return "Failed";
         }
-
+        
         public static string RunCS(string csfile)
         {
             try

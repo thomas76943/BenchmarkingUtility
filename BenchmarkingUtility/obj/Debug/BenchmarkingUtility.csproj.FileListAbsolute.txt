@@ -22,9 +22,9 @@ C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\Benc
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\MetroFramework.Design.dll
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\MetroFramework.dll
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\MetroFramework.Fonts.dll
-C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.csprojResolveAssemblyReference.cache
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.BenchmarkingUtilityForm.resources
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.Properties.Resources.resources
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.csproj.GenerateResource.Cache
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.exe
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.pdb
+C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.csprojResolveAssemblyReference.cache

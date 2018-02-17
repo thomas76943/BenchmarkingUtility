@@ -13,14 +13,12 @@ using System.Windows.Forms;
 
 namespace BenchmarkingUtility
 {
-    public partial class BenchmarkingUtilityForm : Form
+    public partial class BenchmarkingUtilityForm : MetroFramework.Forms.MetroForm
     {
-        //int radiochoice = 1;
         string[] labels = new string[2];
-        //List<string> comboOptions = new List<string>() { "Python + PyCUDA", "C#", "3", "4" };
         List<string> comboOptions = new List<string>() {};
-        
         string codetorun;
+        List<string> matches = new List<string>();
         
         public BenchmarkingUtilityForm()
         {
@@ -29,19 +27,23 @@ namespace BenchmarkingUtility
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Text = "Benchmarking Utility1";
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    scriptviewer_ComboBox.Items.Add(comboOptions[i]);
-            //}
             //scriptviewer_ComboBox.SelectedIndex = 0;
             CreateRadioButtons();
+
+            //Populating the ComboBox for viewing the benchmark scripts
+            foreach (string x in matches)
+            {
+                scriptviewer_ComboBox.Items.Add(x);
+            }
+            scriptviewer_ComboBox.SelectedIndex = 0;
         }
         
-        private void CreateRadioButtons()
+        public void CreateRadioButtons()
         {
             DirectoryInfo cpufiles = new DirectoryInfo(@"CPUAlgorithms");
             FileInfo[] CFiles = cpufiles.GetFiles();
             List<string> cpufilesfound = new List<string>();
+
             foreach (FileInfo file in CFiles)
             {
                 cpufilesfound.Add(file.ToString());
@@ -54,8 +56,6 @@ namespace BenchmarkingUtility
             {
                 gpufilesfound.Add(file.ToString());
             }
-
-            List<string> matches = new List<string>();
 
             foreach (string x in cpufilesfound) { Console.WriteLine("CPU: " + x); } //Printing all files found in CPUAlgorithms
 
@@ -75,7 +75,7 @@ namespace BenchmarkingUtility
             Console.WriteLine(matches.Count + " matches found");
             foreach(string x in matches) { Console.WriteLine(x); } //Printing all file matches across
 
-            Point newLoc = new Point(250, 5);
+            Point newLoc = new Point(15, 15);
             List<RadioButton> buttons = new List<RadioButton>();
             
             for (int i = 0; i < matches.Count; i++)
@@ -83,14 +83,16 @@ namespace BenchmarkingUtility
                 RadioButton newButton = new RadioButton();
                 newButton.Name = "BTN_" + i.ToString();
                 newButton.Text = matches[i].ToString();
+                newButton.AutoSize = true;
+                newButton.Font = new Font(newButton.Font.FontFamily, 10); 
                 newButton.CheckedChanged += RadioButton_CheckedChanged;
                 newButton.Location = newLoc;
-                newLoc.Offset(0, newButton.Height + 5);
+                newLoc.Offset(0, newButton.Height + 8);
                 buttons.Add(newButton);
-                tabPage1.Controls.Add(newButton);
+                algorithmmatches_Panel.Controls.Add(newButton);
             }
         }
-
+        
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             var radioButton = (RadioButton)sender;
@@ -100,18 +102,17 @@ namespace BenchmarkingUtility
                 string buttonName = radioButton.Name;
                 Console.WriteLine("Radiobutton checked was " + buttonName);
             }
-
         }
 
         private void run_button_Click(object sender, EventArgs e)
         {
-            cpuoutput_Label.Text = "";
-            gpuoutput_Label.Text = "";
+            cpuoutput_Label.Text = "cpulabel";
+            gpuoutput_Label.Text = "gpulabel";
             run_button.Enabled = false;
             gui_BackgroundWorker.RunWorkerAsync();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void info_Button_Click(object sender, EventArgs e)
         {
             cpuid_Label.Text = HardwareInfo.GetProcessorId();
             cpumake_Label.Text = HardwareInfo.GetCPUManufacturer();
@@ -141,6 +142,7 @@ namespace BenchmarkingUtility
             string labels = e.Result.ToString();
             cpuoutput_Label.Text = e.Result.ToString();
             gpuoutput_Label.Text = e.Result.ToString();
+
             run_button.Enabled = true;
             
         }
@@ -214,6 +216,12 @@ namespace BenchmarkingUtility
                 //Enumber set to the retrieved output from the script
                 e.Result += "*GPU: " + gpuoutput;
             }
+        }
+
+        private void scriptviewer_ComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            cpuscript_TextBox.Text = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"CPUAlgorithms\" + scriptviewer_ComboBox.Text);
+            gpuscript_TextBox.Text = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"GPUAlgorithms\" + scriptviewer_ComboBox.Text);
         }
     }
 }

@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.algorithmmatches_Panel = new System.Windows.Forms.Panel();
             this.gpu_percentage1 = new System.Windows.Forms.Label();
             this.cpu_percentage1 = new System.Windows.Forms.Label();
-            this.gpu_nametag1 = new System.Windows.Forms.Label();
             this.gpu_progressbar = new System.Windows.Forms.ProgressBar();
-            this.cpu_nametag1 = new System.Windows.Forms.Label();
             this.cpu_progressbar = new System.Windows.Forms.ProgressBar();
             this.gpuoutput_Label = new System.Windows.Forms.Label();
             this.cpuoutput_Label = new System.Windows.Forms.Label();
@@ -43,7 +43,7 @@
             this.gpu_Label = new System.Windows.Forms.Label();
             this.cpu_Label = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.info_Button = new System.Windows.Forms.Button();
             this.memory_Label = new System.Windows.Forms.Label();
             this.cpuclock_Label = new System.Windows.Forms.Label();
             this.cpumake_Label = new System.Windows.Forms.Label();
@@ -53,12 +53,12 @@
             this.cpuscript_TextBox = new System.Windows.Forms.RichTextBox();
             this.scriptviewer_ComboBox = new System.Windows.Forms.ComboBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.pythondir_textboxlabel = new System.Windows.Forms.Label();
             this.pythondir_textbox = new System.Windows.Forms.TextBox();
             this.textfilewrite_Checkbox = new System.Windows.Forms.CheckBox();
             this.gpu_Checkbox = new System.Windows.Forms.CheckBox();
             this.cpu_Checkbox = new System.Windows.Forms.CheckBox();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.PC_CPU = new System.Diagnostics.PerformanceCounter();
             this.PC_GPU = new System.Diagnostics.PerformanceCounter();
             this.graphtimer = new System.Windows.Forms.Timer(this.components);
@@ -67,7 +67,7 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PC_CPU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).BeginInit();
             this.SuspendLayout();
@@ -80,24 +80,24 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ItemSize = new System.Drawing.Size(116, 35);
             this.tabControl1.Location = new System.Drawing.Point(-1, -1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(634, 430);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl1.TabIndex = 4;
+            this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.algorithmmatches_Panel);
             this.tabPage1.Controls.Add(this.gpu_percentage1);
             this.tabPage1.Controls.Add(this.cpu_percentage1);
-            this.tabPage1.Controls.Add(this.gpu_nametag1);
             this.tabPage1.Controls.Add(this.gpu_progressbar);
-            this.tabPage1.Controls.Add(this.cpu_nametag1);
             this.tabPage1.Controls.Add(this.cpu_progressbar);
             this.tabPage1.Controls.Add(this.gpuoutput_Label);
             this.tabPage1.Controls.Add(this.cpuoutput_Label);
@@ -111,80 +111,85 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "home";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(190, 21);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Algorithm Matches Found";
+            // 
+            // algorithmmatches_Panel
+            // 
+            this.algorithmmatches_Panel.AutoScroll = true;
+            this.algorithmmatches_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.algorithmmatches_Panel.Location = new System.Drawing.Point(6, 48);
+            this.algorithmmatches_Panel.Name = "algorithmmatches_Panel";
+            this.algorithmmatches_Panel.Size = new System.Drawing.Size(302, 298);
+            this.algorithmmatches_Panel.TabIndex = 0;
+            // 
             // gpu_percentage1
             // 
             this.gpu_percentage1.AutoSize = true;
-            this.gpu_percentage1.Location = new System.Drawing.Point(481, 358);
+            this.gpu_percentage1.Location = new System.Drawing.Point(492, 302);
             this.gpu_percentage1.Name = "gpu_percentage1";
-            this.gpu_percentage1.Size = new System.Drawing.Size(27, 16);
+            this.gpu_percentage1.Size = new System.Drawing.Size(26, 17);
             this.gpu_percentage1.TabIndex = 16;
             this.gpu_percentage1.Text = "0%";
             // 
             // cpu_percentage1
             // 
             this.cpu_percentage1.AutoSize = true;
-            this.cpu_percentage1.Location = new System.Drawing.Point(200, 358);
+            this.cpu_percentage1.Location = new System.Drawing.Point(492, 134);
             this.cpu_percentage1.Name = "cpu_percentage1";
-            this.cpu_percentage1.Size = new System.Drawing.Size(27, 16);
+            this.cpu_percentage1.Size = new System.Drawing.Size(26, 17);
             this.cpu_percentage1.TabIndex = 15;
             this.cpu_percentage1.Text = "0%";
             // 
-            // gpu_nametag1
-            // 
-            this.gpu_nametag1.AutoSize = true;
-            this.gpu_nametag1.Location = new System.Drawing.Point(295, 358);
-            this.gpu_nametag1.Name = "gpu_nametag1";
-            this.gpu_nametag1.Size = new System.Drawing.Size(37, 16);
-            this.gpu_nametag1.TabIndex = 14;
-            this.gpu_nametag1.Text = "GPU";
-            // 
             // gpu_progressbar
             // 
-            this.gpu_progressbar.Location = new System.Drawing.Point(338, 353);
+            this.gpu_progressbar.Location = new System.Drawing.Point(349, 302);
             this.gpu_progressbar.Name = "gpu_progressbar";
-            this.gpu_progressbar.Size = new System.Drawing.Size(137, 28);
+            this.gpu_progressbar.Size = new System.Drawing.Size(137, 16);
             this.gpu_progressbar.TabIndex = 13;
-            // 
-            // cpu_nametag1
-            // 
-            this.cpu_nametag1.AutoSize = true;
-            this.cpu_nametag1.Location = new System.Drawing.Point(15, 358);
-            this.cpu_nametag1.Name = "cpu_nametag1";
-            this.cpu_nametag1.Size = new System.Drawing.Size(36, 16);
-            this.cpu_nametag1.TabIndex = 12;
-            this.cpu_nametag1.Text = "CPU";
             // 
             // cpu_progressbar
             // 
-            this.cpu_progressbar.Location = new System.Drawing.Point(57, 353);
+            this.cpu_progressbar.Location = new System.Drawing.Point(349, 134);
             this.cpu_progressbar.Name = "cpu_progressbar";
-            this.cpu_progressbar.Size = new System.Drawing.Size(137, 28);
+            this.cpu_progressbar.Size = new System.Drawing.Size(137, 16);
             this.cpu_progressbar.TabIndex = 11;
             // 
             // gpuoutput_Label
             // 
             this.gpuoutput_Label.AutoSize = true;
-            this.gpuoutput_Label.Location = new System.Drawing.Point(275, 227);
+            this.gpuoutput_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpuoutput_Label.Location = new System.Drawing.Point(346, 239);
             this.gpuoutput_Label.Name = "gpuoutput_Label";
-            this.gpuoutput_Label.Size = new System.Drawing.Size(0, 16);
+            this.gpuoutput_Label.Size = new System.Drawing.Size(97, 17);
             this.gpuoutput_Label.TabIndex = 10;
+            this.gpuoutput_Label.Text = "gpuoutputlabel";
             // 
             // cpuoutput_Label
             // 
             this.cpuoutput_Label.AutoSize = true;
-            this.cpuoutput_Label.Location = new System.Drawing.Point(7, 227);
+            this.cpuoutput_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cpuoutput_Label.Location = new System.Drawing.Point(346, 66);
             this.cpuoutput_Label.Name = "cpuoutput_Label";
-            this.cpuoutput_Label.Size = new System.Drawing.Size(0, 16);
+            this.cpuoutput_Label.Size = new System.Drawing.Size(95, 17);
             this.cpuoutput_Label.TabIndex = 9;
+            this.cpuoutput_Label.Text = "cpuoutputlabel";
             // 
             // run_button
             // 
-            this.run_button.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.run_button.Location = new System.Drawing.Point(531, 69);
+            this.run_button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.run_button.Location = new System.Drawing.Point(4, 352);
             this.run_button.Name = "run_button";
-            this.run_button.Size = new System.Drawing.Size(75, 32);
+            this.run_button.Size = new System.Drawing.Size(304, 28);
             this.run_button.TabIndex = 8;
-            this.run_button.Text = "Run";
+            this.run_button.Text = "Run Selected Algorithm";
             this.run_button.UseVisualStyleBackColor = true;
             this.run_button.Click += new System.EventHandler(this.run_button_Click);
             // 
@@ -192,7 +197,7 @@
             // 
             this.gpu_Label.AutoSize = true;
             this.gpu_Label.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpu_Label.Location = new System.Drawing.Point(295, 153);
+            this.gpu_Label.Location = new System.Drawing.Point(346, 221);
             this.gpu_Label.Name = "gpu_Label";
             this.gpu_Label.Size = new System.Drawing.Size(42, 18);
             this.gpu_Label.TabIndex = 7;
@@ -202,7 +207,7 @@
             // 
             this.cpu_Label.AutoSize = true;
             this.cpu_Label.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cpu_Label.Location = new System.Drawing.Point(7, 153);
+            this.cpu_Label.Location = new System.Drawing.Point(347, 48);
             this.cpu_Label.Name = "cpu_Label";
             this.cpu_Label.Size = new System.Drawing.Size(41, 18);
             this.cpu_Label.TabIndex = 6;
@@ -211,7 +216,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.info_Button);
             this.tabPage2.Controls.Add(this.memory_Label);
             this.tabPage2.Controls.Add(this.cpuclock_Label);
             this.tabPage2.Controls.Add(this.cpumake_Label);
@@ -223,22 +228,22 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "info";
             // 
-            // button1
+            // info_Button
             // 
-            this.button1.Location = new System.Drawing.Point(300, 200);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.info_Button.Location = new System.Drawing.Point(300, 200);
+            this.info_Button.Name = "info_Button";
+            this.info_Button.Size = new System.Drawing.Size(75, 23);
+            this.info_Button.TabIndex = 4;
+            this.info_Button.Text = "button1";
+            this.info_Button.UseVisualStyleBackColor = true;
+            this.info_Button.Click += new System.EventHandler(this.info_Button_Click);
             // 
             // memory_Label
             // 
             this.memory_Label.AutoSize = true;
             this.memory_Label.Location = new System.Drawing.Point(9, 107);
             this.memory_Label.Name = "memory_Label";
-            this.memory_Label.Size = new System.Drawing.Size(45, 16);
+            this.memory_Label.Size = new System.Drawing.Size(43, 17);
             this.memory_Label.TabIndex = 3;
             this.memory_Label.Text = "label1";
             // 
@@ -247,7 +252,7 @@
             this.cpuclock_Label.AutoSize = true;
             this.cpuclock_Label.Location = new System.Drawing.Point(9, 65);
             this.cpuclock_Label.Name = "cpuclock_Label";
-            this.cpuclock_Label.Size = new System.Drawing.Size(45, 16);
+            this.cpuclock_Label.Size = new System.Drawing.Size(43, 17);
             this.cpuclock_Label.TabIndex = 2;
             this.cpuclock_Label.Text = "label1";
             // 
@@ -256,7 +261,7 @@
             this.cpumake_Label.AutoSize = true;
             this.cpumake_Label.Location = new System.Drawing.Point(9, 30);
             this.cpumake_Label.Name = "cpumake_Label";
-            this.cpumake_Label.Size = new System.Drawing.Size(45, 16);
+            this.cpumake_Label.Size = new System.Drawing.Size(43, 17);
             this.cpumake_Label.TabIndex = 1;
             this.cpumake_Label.Text = "label1";
             // 
@@ -265,7 +270,7 @@
             this.cpuid_Label.AutoSize = true;
             this.cpuid_Label.Location = new System.Drawing.Point(9, 3);
             this.cpuid_Label.Name = "cpuid_Label";
-            this.cpuid_Label.Size = new System.Drawing.Size(45, 16);
+            this.cpuid_Label.Size = new System.Drawing.Size(43, 17);
             this.cpuid_Label.TabIndex = 0;
             this.cpuid_Label.Text = "label1";
             // 
@@ -306,38 +311,48 @@
             this.scriptviewer_ComboBox.FormattingEnabled = true;
             this.scriptviewer_ComboBox.Location = new System.Drawing.Point(3, 6);
             this.scriptviewer_ComboBox.Name = "scriptviewer_ComboBox";
-            this.scriptviewer_ComboBox.Size = new System.Drawing.Size(168, 24);
+            this.scriptviewer_ComboBox.Size = new System.Drawing.Size(168, 25);
             this.scriptviewer_ComboBox.TabIndex = 0;
+            this.scriptviewer_ComboBox.SelectedValueChanged += new System.EventHandler(this.scriptviewer_ComboBox_SelectedValueChanged);
             // 
             // tabPage4
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.White;
-            this.tabPage4.Controls.Add(this.pythondir_textboxlabel);
-            this.tabPage4.Controls.Add(this.pythondir_textbox);
-            this.tabPage4.Controls.Add(this.textfilewrite_Checkbox);
-            this.tabPage4.Controls.Add(this.gpu_Checkbox);
-            this.tabPage4.Controls.Add(this.cpu_Checkbox);
             this.tabPage4.Location = new System.Drawing.Point(4, 39);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(626, 387);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "options";
+            this.tabPage4.TabIndex = 4;
+            this.tabPage4.Text = "results";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.Color.White;
+            this.tabPage5.Controls.Add(this.pythondir_textboxlabel);
+            this.tabPage5.Controls.Add(this.pythondir_textbox);
+            this.tabPage5.Controls.Add(this.textfilewrite_Checkbox);
+            this.tabPage5.Controls.Add(this.gpu_Checkbox);
+            this.tabPage5.Controls.Add(this.cpu_Checkbox);
+            this.tabPage5.Location = new System.Drawing.Point(4, 39);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(626, 387);
+            this.tabPage5.TabIndex = 3;
+            this.tabPage5.Text = "options";
             // 
             // pythondir_textboxlabel
             // 
             this.pythondir_textboxlabel.AutoSize = true;
             this.pythondir_textboxlabel.Location = new System.Drawing.Point(6, 98);
             this.pythondir_textboxlabel.Name = "pythondir_textboxlabel";
-            this.pythondir_textboxlabel.Size = new System.Drawing.Size(264, 16);
+            this.pythondir_textboxlabel.Size = new System.Drawing.Size(266, 17);
             this.pythondir_textboxlabel.TabIndex = 4;
             this.pythondir_textboxlabel.Text = "Python Directory (numpy + numba required)";
             // 
             // pythondir_textbox
             // 
-            this.pythondir_textbox.Location = new System.Drawing.Point(9, 114);
+            this.pythondir_textbox.Location = new System.Drawing.Point(9, 116);
             this.pythondir_textbox.Name = "pythondir_textbox";
-            this.pythondir_textbox.Size = new System.Drawing.Size(245, 22);
+            this.pythondir_textbox.Size = new System.Drawing.Size(245, 25);
             this.pythondir_textbox.TabIndex = 3;
             this.pythondir_textbox.Text = "C:\\Users\\mooret\\Anaconda2";
             // 
@@ -346,7 +361,7 @@
             this.textfilewrite_Checkbox.AutoSize = true;
             this.textfilewrite_Checkbox.Location = new System.Drawing.Point(9, 54);
             this.textfilewrite_Checkbox.Name = "textfilewrite_Checkbox";
-            this.textfilewrite_Checkbox.Size = new System.Drawing.Size(132, 20);
+            this.textfilewrite_Checkbox.Size = new System.Drawing.Size(126, 21);
             this.textfilewrite_Checkbox.TabIndex = 2;
             this.textfilewrite_Checkbox.Text = "Write To Text File";
             this.textfilewrite_Checkbox.UseVisualStyleBackColor = true;
@@ -358,7 +373,7 @@
             this.gpu_Checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.gpu_Checkbox.Location = new System.Drawing.Point(9, 31);
             this.gpu_Checkbox.Name = "gpu_Checkbox";
-            this.gpu_Checkbox.Size = new System.Drawing.Size(161, 20);
+            this.gpu_Checkbox.Size = new System.Drawing.Size(151, 21);
             this.gpu_Checkbox.TabIndex = 1;
             this.gpu_Checkbox.Text = "Run GPU Benchmarks";
             this.gpu_Checkbox.UseVisualStyleBackColor = true;
@@ -370,19 +385,10 @@
             this.cpu_Checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cpu_Checkbox.Location = new System.Drawing.Point(9, 8);
             this.cpu_Checkbox.Name = "cpu_Checkbox";
-            this.cpu_Checkbox.Size = new System.Drawing.Size(160, 20);
+            this.cpu_Checkbox.Size = new System.Drawing.Size(150, 21);
             this.cpu_Checkbox.TabIndex = 0;
             this.cpu_Checkbox.Text = "Run CPU Benchmarks";
             this.cpu_Checkbox.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 39);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(626, 387);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "results";
-            this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // PC_CPU
             // 
@@ -421,8 +427,8 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PC_CPU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).EndInit();
             this.ResumeLayout(false);
@@ -435,7 +441,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Label gpu_Label;
         private System.Windows.Forms.Label cpu_Label;
         private System.Windows.Forms.Button run_button;
@@ -453,18 +459,18 @@
         private System.Windows.Forms.Label cpuclock_Label;
         private System.Windows.Forms.Label cpumake_Label;
         private System.Windows.Forms.Label cpuid_Label;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Button info_Button;
+        private System.Windows.Forms.TabPage tabPage4;
         private System.Diagnostics.PerformanceCounter PC_CPU;
-        private System.Windows.Forms.Label cpu_nametag1;
         private System.Windows.Forms.ProgressBar cpu_progressbar;
         private System.Diagnostics.PerformanceCounter PC_GPU;
         private System.Windows.Forms.Timer graphtimer;
-        private System.Windows.Forms.Label gpu_nametag1;
         private System.Windows.Forms.ProgressBar gpu_progressbar;
         private System.Windows.Forms.Label gpu_percentage1;
         private System.Windows.Forms.Label cpu_percentage1;
         private System.ComponentModel.BackgroundWorker gui_BackgroundWorker;
+        private System.Windows.Forms.Panel algorithmmatches_Panel;
+        private System.Windows.Forms.Label label1;
     }
 }
 

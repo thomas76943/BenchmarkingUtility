@@ -9,19 +9,21 @@ namespace BenchmarkingUtility
 {
     class HardwareInfo
     {
+        /// <summary>
+        /// Retrieves CPU ID Number
+        /// </summary>
+        /// <returns></returns>
         public static String GetProcessorId()
         {
-
-            ManagementClass mc = new ManagementClass("win32_processor");
-            ManagementObjectCollection moc = mc.GetInstances();
             String Id = String.Empty;
-            foreach (ManagementObject mo in moc)
+            ManagementClass cpuid = new ManagementClass("win32_processor");
+            ManagementObjectCollection cpu = cpuid.GetInstances();
+            foreach (ManagementObject cpu_obj in cpu)
             {
-                Id = mo.Properties["processorID"].Value.ToString();
+                Id = cpu_obj.Properties["processorID"].Value.ToString();
                 break;
             }
             return Id;
-
         }
 
         public static string GetCPUManufacturer()
@@ -29,9 +31,9 @@ namespace BenchmarkingUtility
             string cpuMan = String.Empty;
             //create an instance of the Managemnet class with the
             //Win32_Processor class
-            ManagementClass mgmt = new ManagementClass("Win32_Processor");
+            ManagementClass management = new ManagementClass("Win32_Processor");
             //create a ManagementObjectCollection to loop through
-            ManagementObjectCollection objCol = mgmt.GetInstances();
+            ManagementObjectCollection objCol = management.GetInstances();
             //start our loop for all processors found
             foreach (ManagementObject obj in objCol)
             {

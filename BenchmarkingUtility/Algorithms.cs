@@ -67,8 +67,9 @@ namespace BenchmarkingUtility
                 psi.CreateNoWindow = true;
                 using (Process p = Process.Start(psi))
                 {
+                    string stderr = p.StandardError.ReadToEnd();
                     string finaloutput = p.StandardOutput.ReadToEnd();
-                    Debug.WriteLine(finaloutput);
+                    Debug.WriteLine("stderr: " + stderr + "\nTime: ");
                     return finaloutput;
                 }
             }

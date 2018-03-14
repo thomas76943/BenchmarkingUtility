@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -106,8 +107,8 @@ namespace BenchmarkingUtility
 
         private void run_button_Click(object sender, EventArgs e)
         {
-            cpuoutput_Label.Text = "cpulabel";
-            gpuoutput_Label.Text = "gpulabel";
+            cpuoutput_Label.Text = "";
+            gpuoutput_Label.Text = "";
             run_button.Enabled = false;
             gui_BackgroundWorker.RunWorkerAsync();
         }
@@ -138,10 +139,9 @@ namespace BenchmarkingUtility
 
         private void gui_BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
-            string labels = e.Result.ToString();
-            cpuoutput_Label.Text = e.Result.ToString();
-            gpuoutput_Label.Text = e.Result.ToString();
+            string[] results = (e.Result.ToString()).Split('*');
+            cpuoutput_Label.Text = results[0];
+            gpuoutput_Label.Text = results[1];
 
             run_button.Enabled = true;
             
@@ -172,6 +172,8 @@ namespace BenchmarkingUtility
             //If "Run CPU Algorithms" checkbox is true, run CPU algorithm corresponding to the radio button choice
             if (cpu)
             {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
                 //Cases represent types of file extension for algorithm scripts
                 switch (extension)
                 {
@@ -190,13 +192,16 @@ namespace BenchmarkingUtility
                         Console.WriteLine("Unrecognised");
                         break;
                 }
+                timer.Stop();
                 //ENumber set to the retrieved output from the script
-                e.Result = "*CPU: " + cpuoutput;
+                e.Result = timer.Elapsed;
             }
            
             //If "Run GPU Algorithms" checkbox is true, run GPU algorithm corresponding to the radio button choice
             if (gpu)
             {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
                 //Cases represent types of file extension for algorithm scripts
                 switch (extension)
                 {
@@ -214,7 +219,7 @@ namespace BenchmarkingUtility
                         break;
                 }
                 //Enumber set to the retrieved output from the script
-                e.Result += "*GPU: " + gpuoutput;
+                e.Result += "*" + timer.Elapsed;
             }
         }
 

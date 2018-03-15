@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Management;
+using Alea;
+using System.Globalization;
 
 namespace BenchmarkingUtility
 {
@@ -86,5 +88,21 @@ namespace BenchmarkingUtility
             MemSize = (MemSize / 1024) / 1024;
             return MemSize.ToString() + "MB";
         }
+
+        public static void getGPUInfo()
+        {
+            var devices = Device.Devices;
+            var numGpus = devices.Length;
+            foreach (var device in devices)
+            {
+                device.Print();
+                Console.WriteLine(device);
+                var id = device.Id;
+                var arch = device.Arch;
+                var numMultiProc = device.Attributes.MultiprocessorCount;
+            }
+            var deviceIds = devices.Select(device => device.Id);
+        }
+
     }
 }

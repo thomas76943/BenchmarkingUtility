@@ -63,13 +63,19 @@
             this.PC_GPU = new System.Diagnostics.PerformanceCounter();
             this.graphtimer = new System.Windows.Forms.Timer(this.components);
             this.gui_BackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.resultstable_Button = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.resultstablepath_Input = new System.Windows.Forms.Label();
+            this.results_dataGridView = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PC_CPU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.results_dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -317,6 +323,10 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.results_dataGridView);
+            this.tabPage4.Controls.Add(this.resultstablepath_Input);
+            this.tabPage4.Controls.Add(this.textBox1);
+            this.tabPage4.Controls.Add(this.resultstable_Button);
             this.tabPage4.Location = new System.Drawing.Point(4, 39);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(626, 387);
@@ -412,6 +422,40 @@
             this.gui_BackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.gui_BackgroundWorker_DoWork);
             this.gui_BackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.gui_BackgroundWorker_RunWorkerCompleted);
             // 
+            // resultstable_Button
+            // 
+            this.resultstable_Button.Location = new System.Drawing.Point(380, 3);
+            this.resultstable_Button.Name = "resultstable_Button";
+            this.resultstable_Button.Size = new System.Drawing.Size(114, 25);
+            this.resultstable_Button.TabIndex = 0;
+            this.resultstable_Button.Text = "Load Results";
+            this.resultstable_Button.UseVisualStyleBackColor = true;
+            this.resultstable_Button.Click += new System.EventHandler(this.resultstable_Button_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(141, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(233, 25);
+            this.textBox1.TabIndex = 1;
+            // 
+            // resultstablepath_Input
+            // 
+            this.resultstablepath_Input.AutoSize = true;
+            this.resultstablepath_Input.Location = new System.Drawing.Point(3, 6);
+            this.resultstablepath_Input.Name = "resultstablepath_Input";
+            this.resultstablepath_Input.Size = new System.Drawing.Size(132, 17);
+            this.resultstablepath_Input.TabIndex = 2;
+            this.resultstablepath_Input.Text = "Path to Results Table:";
+            // 
+            // results_dataGridView
+            // 
+            this.results_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.results_dataGridView.Location = new System.Drawing.Point(6, 50);
+            this.results_dataGridView.Name = "results_dataGridView";
+            this.results_dataGridView.Size = new System.Drawing.Size(592, 317);
+            this.results_dataGridView.TabIndex = 3;
+            // 
             // BenchmarkingUtilityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -427,10 +471,13 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PC_CPU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.results_dataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -471,6 +518,10 @@
         private System.ComponentModel.BackgroundWorker gui_BackgroundWorker;
         private System.Windows.Forms.Panel algorithmmatches_Panel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button resultstable_Button;
+        private System.Windows.Forms.Label resultstablepath_Input;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView results_dataGridView;
     }
 }
 

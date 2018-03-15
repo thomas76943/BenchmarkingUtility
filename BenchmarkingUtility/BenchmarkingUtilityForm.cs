@@ -16,9 +16,9 @@ namespace BenchmarkingUtility
 {
     public partial class BenchmarkingUtilityForm : MetroFramework.Forms.MetroForm
     {
+        string codetorun;
         string[] labels = new string[2];
         List<string> comboOptions = new List<string>() {};
-        string codetorun;
         List<string> matches = new List<string>();
         
         public BenchmarkingUtilityForm()
@@ -113,12 +113,14 @@ namespace BenchmarkingUtility
             gui_BackgroundWorker.RunWorkerAsync();
         }
 
+
         private void info_Button_Click(object sender, EventArgs e)
         {
             cpuid_Label.Text = HardwareInfo.GetProcessorId();
             cpumake_Label.Text = HardwareInfo.GetCPUManufacturer();
             cpuclock_Label.Text = HardwareInfo.GetCPUCurrentClockSpeed().ToString();
             memory_Label.Text = HardwareInfo.GetPhysicalMemory();
+            HardwareInfo.getGPUInfo();
         }
         
         private void BenchmarkingUtilityForm_Load(object sender, EventArgs e)
@@ -193,7 +195,7 @@ namespace BenchmarkingUtility
                         break;
                 }
                 timer.Stop();
-                //ENumber set to the retrieved output from the script
+                //BackgroundWorker result set to the total elapsed time of the CPU stopwatch
                 e.Result = timer.Elapsed;
             }
            
@@ -218,7 +220,7 @@ namespace BenchmarkingUtility
                         Console.WriteLine("Unrecognised");
                         break;
                 }
-                //Enumber set to the retrieved output from the script
+                //Total elapsed time of the GPU stopwatch appened to the BackgroundWorker result
                 e.Result += "*" + timer.Elapsed;
             }
         }
@@ -227,6 +229,35 @@ namespace BenchmarkingUtility
         {
             cpuscript_TextBox.Text = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"CPUAlgorithms\" + scriptviewer_ComboBox.Text);
             gpuscript_TextBox.Text = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"GPUAlgorithms\" + scriptviewer_ComboBox.Text);
+        }
+
+        private void resultstable_Button_Click(object sender, EventArgs e)
+        {
+            //results_dataGridView.AutoGenerateColumns = false;
+            resultstable_Button.Text = "Reload";
+            DataTable resultstable = new DataTable();
+            DataRow row = resultstable.NewRow();
+            string pathtotable = @"C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\results.csv";
+            //string pathtotable = resultstablepath_Input.Text;
+            string[] rows = File.ReadAllLines(pathtotable);
+            string[] fields = rows[0].Split(',');
+            int columns = fields.GetLength(0);
+            for (int i = 0; i < columns; i++)
+            {
+                resultstable.Columns.Add(fields[i]);
+            }
+            
+            for (int i = 1; i < rows.GetLength(0); i++)
+            {
+                fields = rows[i].Split(new char[] { ',' });
+                row = resultstable.NewRow();
+                for (int j = 0; j < columns; j++)
+                {
+                    row[j] = fields[j];
+                }
+                resultstable.Rows.Add(row);
+            }
+            results_dataGridView.DataSource = resultstable;
         }
     }
 }

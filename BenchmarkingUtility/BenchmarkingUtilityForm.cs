@@ -242,6 +242,7 @@ namespace BenchmarkingUtility
             string[] rows = File.ReadAllLines(pathtotable);
             string[] fields = rows[0].Split(',');
             int columns = fields.GetLength(0);
+
             for (int i = 0; i < columns; i++)
             {
                 resultstable.Columns.Add(fields[i]);
@@ -249,12 +250,14 @@ namespace BenchmarkingUtility
             
             for (int i = 1; i < rows.GetLength(0); i++)
             {
-                fields = rows[i].Split(new char[] { ',' });
+                fields = rows[i].Split(',');
                 row = resultstable.NewRow();
+
                 for (int j = 0; j < columns; j++)
                 {
                     row[j] = fields[j];
                 }
+
                 resultstable.Rows.Add(row);
             }
             results_dataGridView.DataSource = resultstable;

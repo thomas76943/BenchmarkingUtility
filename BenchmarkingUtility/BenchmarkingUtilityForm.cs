@@ -263,4 +263,34 @@ namespace BenchmarkingUtility
             results_dataGridView.DataSource = resultstable;
         }
     }
+
+    public static class ExceptionExtension
+    {
+        public static T FindInnerException<T>(this Exception ex) where T : Exception
+        {
+            if (!ex.GetType().Equals(typeof(T)))
+            {
+                Exception inner = ex.InnerException;
+                if (inner == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    if (inner.GetType().Equals(typeof(T)))
+                    {
+                        return (T)inner;
+                    }
+                    else
+                    {
+                        return inner.FindInnerException<T>();
+                    }
+                }
+            }
+            else
+            {
+                return (T)ex;
+            }
+        }
+    }
 }

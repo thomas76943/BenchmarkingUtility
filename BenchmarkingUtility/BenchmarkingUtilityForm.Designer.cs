@@ -476,7 +476,7 @@
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PC_CPU)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.results_dataGridView)).EndInit();
             this.ResumeLayout(false);
 

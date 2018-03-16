@@ -237,7 +237,7 @@ namespace BenchmarkingUtility
             resultstable_Button.Text = "Reload";
             DataTable resultstable = new DataTable();
             DataRow row = resultstable.NewRow();
-            string pathtotable = @"C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\results.csv";
+            string pathtotable = @"C:\Users\mooret-aw\Documents\BenchmarkingUtility\results.csv";
             //string pathtotable = resultstablepath_Input.Text;
             string[] rows = File.ReadAllLines(pathtotable);
             string[] fields = rows[0].Split(',');

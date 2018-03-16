@@ -88,3 +88,5 @@ C:\Users\mooret-aw\Documents\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\B
 C:\Users\mooret-aw\Documents\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.csproj.GenerateResource.Cache
 C:\Users\mooret-aw\Documents\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.exe
 C:\Users\mooret-aw\Documents\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.pdb
+C:\Users\mooret-aw\Documents\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.csproj.CoreCompileInputs.cache
+C:\Users\mooret-aw\Documents\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.csproj.CopyComplete

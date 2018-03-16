@@ -53,6 +53,10 @@
             this.cpuscript_TextBox = new System.Windows.Forms.RichTextBox();
             this.scriptviewer_ComboBox = new System.Windows.Forms.ComboBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.results_dataGridView = new System.Windows.Forms.DataGridView();
+            this.resultstablepath_Input = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.resultstable_Button = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.pythondir_textboxlabel = new System.Windows.Forms.Label();
             this.pythondir_textbox = new System.Windows.Forms.TextBox();
@@ -63,19 +67,16 @@
             this.PC_GPU = new System.Diagnostics.PerformanceCounter();
             this.graphtimer = new System.Windows.Forms.Timer(this.components);
             this.gui_BackgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.resultstable_Button = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.resultstablepath_Input = new System.Windows.Forms.Label();
-            this.results_dataGridView = new System.Windows.Forms.DataGridView();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.results_dataGridView)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PC_CPU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.results_dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -334,6 +335,40 @@
             this.tabPage4.Text = "results";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // results_dataGridView
+            // 
+            this.results_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.results_dataGridView.Location = new System.Drawing.Point(6, 50);
+            this.results_dataGridView.Name = "results_dataGridView";
+            this.results_dataGridView.Size = new System.Drawing.Size(592, 317);
+            this.results_dataGridView.TabIndex = 3;
+            // 
+            // resultstablepath_Input
+            // 
+            this.resultstablepath_Input.AutoSize = true;
+            this.resultstablepath_Input.Location = new System.Drawing.Point(3, 6);
+            this.resultstablepath_Input.Name = "resultstablepath_Input";
+            this.resultstablepath_Input.Size = new System.Drawing.Size(133, 17);
+            this.resultstablepath_Input.TabIndex = 2;
+            this.resultstablepath_Input.Text = "Path to Results Table:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(141, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(233, 25);
+            this.textBox1.TabIndex = 1;
+            // 
+            // resultstable_Button
+            // 
+            this.resultstable_Button.Location = new System.Drawing.Point(500, 3);
+            this.resultstable_Button.Name = "resultstable_Button";
+            this.resultstable_Button.Size = new System.Drawing.Size(114, 25);
+            this.resultstable_Button.TabIndex = 0;
+            this.resultstable_Button.Text = "Load Results";
+            this.resultstable_Button.UseVisualStyleBackColor = true;
+            this.resultstable_Button.Click += new System.EventHandler(this.resultstable_Button_Click);
+            // 
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.White;
@@ -371,7 +406,7 @@
             this.textfilewrite_Checkbox.AutoSize = true;
             this.textfilewrite_Checkbox.Location = new System.Drawing.Point(9, 54);
             this.textfilewrite_Checkbox.Name = "textfilewrite_Checkbox";
-            this.textfilewrite_Checkbox.Size = new System.Drawing.Size(126, 21);
+            this.textfilewrite_Checkbox.Size = new System.Drawing.Size(128, 21);
             this.textfilewrite_Checkbox.TabIndex = 2;
             this.textfilewrite_Checkbox.Text = "Write To Text File";
             this.textfilewrite_Checkbox.UseVisualStyleBackColor = true;
@@ -422,39 +457,9 @@
             this.gui_BackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.gui_BackgroundWorker_DoWork);
             this.gui_BackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.gui_BackgroundWorker_RunWorkerCompleted);
             // 
-            // resultstable_Button
+            // openFileDialog1
             // 
-            this.resultstable_Button.Location = new System.Drawing.Point(380, 3);
-            this.resultstable_Button.Name = "resultstable_Button";
-            this.resultstable_Button.Size = new System.Drawing.Size(114, 25);
-            this.resultstable_Button.TabIndex = 0;
-            this.resultstable_Button.Text = "Load Results";
-            this.resultstable_Button.UseVisualStyleBackColor = true;
-            this.resultstable_Button.Click += new System.EventHandler(this.resultstable_Button_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(141, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(233, 25);
-            this.textBox1.TabIndex = 1;
-            // 
-            // resultstablepath_Input
-            // 
-            this.resultstablepath_Input.AutoSize = true;
-            this.resultstablepath_Input.Location = new System.Drawing.Point(3, 6);
-            this.resultstablepath_Input.Name = "resultstablepath_Input";
-            this.resultstablepath_Input.Size = new System.Drawing.Size(132, 17);
-            this.resultstablepath_Input.TabIndex = 2;
-            this.resultstablepath_Input.Text = "Path to Results Table:";
-            // 
-            // results_dataGridView
-            // 
-            this.results_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.results_dataGridView.Location = new System.Drawing.Point(6, 50);
-            this.results_dataGridView.Name = "results_dataGridView";
-            this.results_dataGridView.Size = new System.Drawing.Size(592, 317);
-            this.results_dataGridView.TabIndex = 3;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // BenchmarkingUtilityForm
             // 
@@ -473,11 +478,11 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.results_dataGridView)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PC_CPU)).EndInit();
             //((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.results_dataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -522,6 +527,7 @@
         private System.Windows.Forms.Label resultstablepath_Input;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView results_dataGridView;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

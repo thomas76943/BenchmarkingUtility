@@ -233,34 +233,40 @@ namespace BenchmarkingUtility
 
         private void resultstable_Button_Click(object sender, EventArgs e)
         {
-            //results_dataGridView.AutoGenerateColumns = false;
-            resultstable_Button.Text = "Reload";
             DataTable resultstable = new DataTable();
             DataRow row = resultstable.NewRow();
-            string pathtotable = @"C:\Users\mooret-aw\Documents\BenchmarkingUtility\results.csv";
-            //string pathtotable = resultstablepath_Input.Text;
-            string[] rows = File.ReadAllLines(pathtotable);
-            string[] fields = rows[0].Split(',');
-            int columns = fields.GetLength(0);
+            OpenFileDialog loadresults = new OpenFileDialog();
+            loadresults.InitialDirectory = @"C:\Users\mooret-aw\Documents\BenchmarkingUtility";
+            loadresults.DefaultExt = ".txt";
+            string pathtotable;
 
-            for (int i = 0; i < columns; i++)
+            if (loadresults.ShowDialog() == DialogResult.OK)
             {
-                resultstable.Columns.Add(fields[i]);
-            }
-            
-            for (int i = 1; i < rows.GetLength(0); i++)
-            {
-                fields = rows[i].Split(',');
-                row = resultstable.NewRow();
+                pathtotable = loadresults.FileName;
+                Console.WriteLine(pathtotable);
+                string[] rows = File.ReadAllLines(pathtotable);
+                string[] fields = rows[0].Split(',');
+                int columns = fields.GetLength(0);
 
-                for (int j = 0; j < columns; j++)
+                for (int i = 0; i < columns; i++)
                 {
-                    row[j] = fields[j];
+                    resultstable.Columns.Add(fields[i]);
                 }
 
-                resultstable.Rows.Add(row);
-            }
-            results_dataGridView.DataSource = resultstable;
+                for (int i = 1; i < rows.GetLength(0); i++)
+                {
+                    fields = rows[i].Split(',');
+                    row = resultstable.NewRow();
+
+                    for (int j = 0; j < columns; j++)
+                    {
+                        row[j] = fields[j];
+                    }
+
+                    resultstable.Rows.Add(row);
+                }
+                results_dataGridView.DataSource = resultstable;
+            }           
         }
     }
 

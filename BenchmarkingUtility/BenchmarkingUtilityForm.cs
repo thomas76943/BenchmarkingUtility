@@ -18,9 +18,9 @@ namespace BenchmarkingUtility
     {
         string codetorun;
         string[] labels = new string[2];
-        List<string> comboOptions = new List<string>() {};
+        List<string> comboOptions = new List<string>() { };
         List<string> matches = new List<string>();
-        
+
         public BenchmarkingUtilityForm()
         {
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace BenchmarkingUtility
             }
             scriptviewer_ComboBox.SelectedIndex = 0;
         }
-        
+
         public void CreateRadioButtons()
         {
             DirectoryInfo cpufiles = new DirectoryInfo(@"CPUAlgorithms");
@@ -74,18 +74,18 @@ namespace BenchmarkingUtility
             }
 
             Console.WriteLine(matches.Count + " matches found");
-            foreach(string x in matches) { Console.WriteLine(x); } //Printing all file matches across
+            foreach (string x in matches) { Console.WriteLine(x); } //Printing all file matches across
 
             Point newLoc = new Point(15, 15);
             List<RadioButton> buttons = new List<RadioButton>();
-            
+
             for (int i = 0; i < matches.Count; i++)
             {
                 RadioButton newButton = new RadioButton();
                 newButton.Name = "BTN_" + i.ToString();
                 newButton.Text = matches[i].ToString();
                 newButton.AutoSize = true;
-                newButton.Font = new Font(newButton.Font.FontFamily, 10); 
+                newButton.Font = new Font(newButton.Font.FontFamily, 10);
                 newButton.CheckedChanged += RadioButton_CheckedChanged;
                 newButton.Location = newLoc;
                 newLoc.Offset(0, newButton.Height + 8);
@@ -93,7 +93,7 @@ namespace BenchmarkingUtility
                 algorithmmatches_Panel.Controls.Add(newButton);
             }
         }
-        
+
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             var radioButton = (RadioButton)sender;
@@ -122,7 +122,7 @@ namespace BenchmarkingUtility
             memory_Label.Text = HardwareInfo.GetPhysicalMemory();
             HardwareInfo.getGPUInfo();
         }
-        
+
         private void BenchmarkingUtilityForm_Load(object sender, EventArgs e)
         {
             graphtimer.Start();
@@ -143,10 +143,8 @@ namespace BenchmarkingUtility
         {
             string[] results = (e.Result.ToString()).Split('*');
             cpuoutput_Label.Text = results[0];
-            gpuoutput_Label.Text = results[1];
-
+            if (gpu_Checkbox.Checked) { gpuoutput_Label.Text = results[1]; }
             run_button.Enabled = true;
-            
         }
         
         private void gui_BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)

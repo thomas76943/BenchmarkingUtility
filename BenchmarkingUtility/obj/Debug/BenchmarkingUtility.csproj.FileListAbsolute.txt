@@ -92,3 +92,5 @@ C:\Users\mooret-aw\Documents\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\B
 C:\Users\mooret-aw\Documents\BenchmarkingUtility\BenchmarkingUtility\obj\Debug\BenchmarkingUtility.csproj.CopyComplete
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\CsvHelper.dll
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\CsvHelper.xml
+C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\NvAPIWrapper.Net.dll
+C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\NvAPIWrapper.Net.xml

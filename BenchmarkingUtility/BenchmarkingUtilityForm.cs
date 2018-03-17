@@ -11,6 +11,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NvAPIWrapper;
+using NvAPIWrapper.GPU;
+using NvAPIWrapper.Display;
+using NvAPIWrapper.Mosaic;
+using NvAPIWrapper.Native;
 
 namespace BenchmarkingUtility
 {
@@ -23,6 +28,7 @@ namespace BenchmarkingUtility
 
         public BenchmarkingUtilityForm()
         {
+            NVIDIA.Initialize();
             InitializeComponent();
             //Window has a fixed size and the maximise button is disabled
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -152,6 +158,20 @@ namespace BenchmarkingUtility
             //float gpu_f = PC_GPU.NextValue();
             //gpu_progressbar.Value = (int)gpu_f;
             //gpu_percentage1.Text = string.Format("{0:0.00}%", gpu_f);
+
+            //var navigation = new Dictionary<object, Action>
+            //{
+            //"GPU Dynamic Performance States", () =>
+            //ConsoleNavigation.PrintNavigation(
+            //PhysicalGPU.GetPhysicalGPUs()
+            //                    .ToDictionary(gpu => (object)gpu.ToString(), gpu => new Action(
+            //                       () =>
+            //                       {
+            //                           ConsoleNavigation.PrintObject(gpu.DynamicPerformanceStatesInfo,
+            //                               "PhysicalGPU.DynamicPerformanceStatesInfo");
+            //                       })),
+            //                "PhysicalGPU.GetPhysicalGPUs()", "Select a GPU to show dynamic performance state domains")
+            //}
         }
 
         private void gui_BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -306,36 +326,6 @@ namespace BenchmarkingUtility
                 }
                 results_dataGridView.DataSource = resultstable;
             }           
-        }
-    }
-
-    public static class ExceptionExtension
-    {
-        public static T FindInnerException<T>(this Exception ex) where T : Exception
-        {
-            if (!ex.GetType().Equals(typeof(T)))
-            {
-                Exception inner = ex.InnerException;
-                if (inner == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    if (inner.GetType().Equals(typeof(T)))
-                    {
-                        return (T)inner;
-                    }
-                    else
-                    {
-                        return inner.FindInnerException<T>();
-                    }
-                }
-            }
-            else
-            {
-                return (T)ex;
-            }
         }
     }
 }

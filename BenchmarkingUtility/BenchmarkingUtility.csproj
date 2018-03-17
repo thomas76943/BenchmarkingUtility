@@ -75,6 +75,10 @@
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NvAPIWrapper.Net, Version=0.5.6431.40152, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NvAPIWrapper.Net.0.5.6431.40152\lib\net45\NvAPIWrapper.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />

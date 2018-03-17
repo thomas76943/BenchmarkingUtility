@@ -11,98 +11,82 @@ namespace BenchmarkingUtility
 {
     class HardwareInfo
     {
-        /// <summary>
-        /// Retrieves CPU ID Number
-        /// </summary>
-        /// <returns></returns>
-        public static String GetProcessorId()
+        public static string GetCPUName()
         {
-            String Id = String.Empty;
-            ManagementClass cpuid = new ManagementClass("win32_processor");
-            ManagementObjectCollection cpu = cpuid.GetInstances();
-            foreach (ManagementObject cpu_obj in cpu)
+            string cpu_Name = "";
+            ManagementClass cpumgmt = new ManagementClass("win32_processor");
+            ManagementObjectCollection cpu = cpumgmt.GetInstances();
+
+            foreach (ManagementObject obj in cpu)
             {
-                Id = cpu_obj.Properties["processorID"].Value.ToString();
-                break;
+                cpu_Name = obj.Properties["Name"].Value.ToString();
             }
-            return Id;
+            return cpu_Name;
         }
 
-        public static string GetCPUManufacturer()
+        public static int GetCPUFrequency()
         {
-            string cpuMan = String.Empty;
-            //create an instance of the Managemnet class with the
-            //Win32_Processor class
-            ManagementClass management = new ManagementClass("Win32_Processor");
-            //create a ManagementObjectCollection to loop through
-            ManagementObjectCollection objCol = management.GetInstances();
-            //start our loop for all processors found
-            foreach (ManagementObject obj in objCol)
+            int cpu_Frequency = 0;
+            ManagementClass cpumgmt = new ManagementClass("Win32_Processor");
+            ManagementObjectCollection cpu = cpumgmt.GetInstances();
+
+            foreach (ManagementObject obj in cpu)
             {
-                if (cpuMan == String.Empty)
-                {
-                    // only return manufacturer from first CPU
-                    cpuMan = obj.Properties["Manufacturer"].Value.ToString();
-                }
+                cpu_Frequency = Convert.ToInt32(obj.Properties["CurrentClockSpeed"].Value.ToString());
             }
-            return cpuMan;
+            return cpu_Frequency;
         }
 
-        public static int GetCPUCurrentClockSpeed()
+        public static int GetCPUCores()
         {
-            int cpuClockSpeed = 0;
-            //create an instance of the Managemnet class with the
-            //Win32_Processor class
-            ManagementClass mgmt = new ManagementClass("Win32_Processor");
-            //create a ManagementObjectCollection to loop through
-            ManagementObjectCollection objCol = mgmt.GetInstances();
-            //start our loop for all processors found
-            foreach (ManagementObject obj in objCol)
+            int cpu_Cores = 0;
+            //int cpu_Threads = 0;
+            ManagementClass cpumgmt = new ManagementClass("win32_processor");
+            ManagementObjectCollection cpu = cpumgmt.GetInstances();
+
+            foreach (ManagementObject obj in cpu)
             {
-                if (cpuClockSpeed == 0)
-                {
-                    // only return cpuStatus from first CPU
-                    cpuClockSpeed = Convert.ToInt32(obj.Properties["CurrentClockSpeed"].Value.ToString());
-                }
+                cpu_Cores = Convert.ToInt32(obj.Properties["NumberOfCores"].Value.ToString());
+                //cpu_Threads = Convert.ToInt32(obj.Properties["NumberOfLogicalProcessors"].Value.ToString());
             }
-            //return the status
-            return cpuClockSpeed;
+            return cpu_Cores;
         }
 
-        public static string GetPhysicalMemory()
+        public static int GetCPUThreads()
         {
-            ManagementScope oMs = new ManagementScope();
-            ObjectQuery oQuery = new ObjectQuery("SELECT Capacity FROM Win32_PhysicalMemory");
-            ManagementObjectSearcher oSearcher = new ManagementObjectSearcher(oMs, oQuery);
-            ManagementObjectCollection oCollection = oSearcher.Get();
+            int cpu_Threads = 0;
+            ManagementClass cpumgmt = new ManagementClass("win32_processor");
+            ManagementObjectCollection cpu = cpumgmt.GetInstances();
 
-            long MemSize = 0;
-            long mCap = 0;
-
-            // In case more than one Memory sticks are installed
-            foreach (ManagementObject obj in oCollection)
+            foreach (ManagementObject obj in cpu)
             {
-                mCap = Convert.ToInt64(obj["Capacity"]);
-                MemSize += mCap;
+                cpu_Threads = Convert.ToInt32(obj.Properties["NumberOfLogicalProcessors"].Value.ToString());
             }
-            MemSize = (MemSize / 1024) / 1024;
-            return MemSize.ToString() + "MB";
+            return cpu_Threads;
         }
 
-        public static void getGPUInfo()
+        public static string GetGPUName()
         {
             var devices = Device.Devices;
-            var numGpus = devices.Length;
-            foreach (var device in devices)
-            {
-                device.Print();
-                Console.WriteLine(device);
-                var id = device.Id;
-                var arch = device.Arch;
-                var numMultiProc = device.Attributes.MultiprocessorCount;
-            }
-            var deviceIds = devices.Select(device => device.Id);
+            return devices[0].ToString();
         }
 
+        public static int GetGPUFrequency()
+        {
+            var devices = Device.Devices;
+            return devices[0].Properties.ClockRate;
+        }
+
+        public static int GetGPUCUDACores()
+        {
+            var devices = Device.Devices;
+            return devices[0].Cores;
+        }
+
+        public static int GetGPUTextureUnits()
+        {
+            var devices = Device.Devices;
+            return (devices[0].Cores / devices[0].Attributes.MultiprocessorCount);
+        }
     }
 }

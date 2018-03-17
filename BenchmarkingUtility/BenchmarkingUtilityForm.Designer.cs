@@ -44,10 +44,9 @@
             this.cpu_Label = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.info_Button = new System.Windows.Forms.Button();
-            this.memory_Label = new System.Windows.Forms.Label();
-            this.cpuclock_Label = new System.Windows.Forms.Label();
-            this.cpumake_Label = new System.Windows.Forms.Label();
-            this.cpuid_Label = new System.Windows.Forms.Label();
+            this.cpuThreads_Label = new System.Windows.Forms.Label();
+            this.cpuCores_Label = new System.Windows.Forms.Label();
+            this.cpuFrequency_Label = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.gpuscript_TextBox = new System.Windows.Forms.RichTextBox();
             this.cpuscript_TextBox = new System.Windows.Forms.RichTextBox();
@@ -68,6 +67,18 @@
             this.graphtimer = new System.Windows.Forms.Timer(this.components);
             this.gui_BackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.cpuName_Label = new System.Windows.Forms.Label();
+            this.gpuName_Label = new System.Windows.Forms.Label();
+            this.staticcpuFrequency_Label = new System.Windows.Forms.Label();
+            this.staticcpuCores_Label = new System.Windows.Forms.Label();
+            this.staticcpuThreads_Label = new System.Windows.Forms.Label();
+            this.staticgpuCores_Frequency = new System.Windows.Forms.Label();
+            this.staticgpuFrequency_Label = new System.Windows.Forms.Label();
+            this.gpuCores_Label = new System.Windows.Forms.Label();
+            this.gpuFrequency_Label = new System.Windows.Forms.Label();
+            this.os_Label = new System.Windows.Forms.Label();
+            this.staticgpuTMU_Label = new System.Windows.Forms.Label();
+            this.gpuTMU_Label = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -223,11 +234,22 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.staticgpuTMU_Label);
+            this.tabPage2.Controls.Add(this.gpuTMU_Label);
+            this.tabPage2.Controls.Add(this.os_Label);
+            this.tabPage2.Controls.Add(this.staticgpuCores_Frequency);
+            this.tabPage2.Controls.Add(this.staticgpuFrequency_Label);
+            this.tabPage2.Controls.Add(this.gpuCores_Label);
+            this.tabPage2.Controls.Add(this.gpuFrequency_Label);
+            this.tabPage2.Controls.Add(this.staticcpuThreads_Label);
+            this.tabPage2.Controls.Add(this.staticcpuCores_Label);
+            this.tabPage2.Controls.Add(this.staticcpuFrequency_Label);
+            this.tabPage2.Controls.Add(this.gpuName_Label);
+            this.tabPage2.Controls.Add(this.cpuName_Label);
             this.tabPage2.Controls.Add(this.info_Button);
-            this.tabPage2.Controls.Add(this.memory_Label);
-            this.tabPage2.Controls.Add(this.cpuclock_Label);
-            this.tabPage2.Controls.Add(this.cpumake_Label);
-            this.tabPage2.Controls.Add(this.cpuid_Label);
+            this.tabPage2.Controls.Add(this.cpuThreads_Label);
+            this.tabPage2.Controls.Add(this.cpuCores_Label);
+            this.tabPage2.Controls.Add(this.cpuFrequency_Label);
             this.tabPage2.Location = new System.Drawing.Point(4, 39);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -237,49 +259,40 @@
             // 
             // info_Button
             // 
-            this.info_Button.Location = new System.Drawing.Point(300, 200);
+            this.info_Button.Location = new System.Drawing.Point(454, 356);
             this.info_Button.Name = "info_Button";
-            this.info_Button.Size = new System.Drawing.Size(75, 23);
+            this.info_Button.Size = new System.Drawing.Size(150, 24);
             this.info_Button.TabIndex = 4;
-            this.info_Button.Text = "button1";
+            this.info_Button.Text = "Reload System Details";
             this.info_Button.UseVisualStyleBackColor = true;
             this.info_Button.Click += new System.EventHandler(this.info_Button_Click);
             // 
-            // memory_Label
+            // cpuThreads_Label
             // 
-            this.memory_Label.AutoSize = true;
-            this.memory_Label.Location = new System.Drawing.Point(9, 107);
-            this.memory_Label.Name = "memory_Label";
-            this.memory_Label.Size = new System.Drawing.Size(43, 17);
-            this.memory_Label.TabIndex = 3;
-            this.memory_Label.Text = "label1";
+            this.cpuThreads_Label.AutoSize = true;
+            this.cpuThreads_Label.Location = new System.Drawing.Point(145, 154);
+            this.cpuThreads_Label.Name = "cpuThreads_Label";
+            this.cpuThreads_Label.Size = new System.Drawing.Size(90, 17);
+            this.cpuThreads_Label.TabIndex = 3;
+            this.cpuThreads_Label.Text = "(thread count)";
             // 
-            // cpuclock_Label
+            // cpuCores_Label
             // 
-            this.cpuclock_Label.AutoSize = true;
-            this.cpuclock_Label.Location = new System.Drawing.Point(9, 65);
-            this.cpuclock_Label.Name = "cpuclock_Label";
-            this.cpuclock_Label.Size = new System.Drawing.Size(43, 17);
-            this.cpuclock_Label.TabIndex = 2;
-            this.cpuclock_Label.Text = "label1";
+            this.cpuCores_Label.AutoSize = true;
+            this.cpuCores_Label.Location = new System.Drawing.Point(145, 122);
+            this.cpuCores_Label.Name = "cpuCores_Label";
+            this.cpuCores_Label.Size = new System.Drawing.Size(78, 17);
+            this.cpuCores_Label.TabIndex = 2;
+            this.cpuCores_Label.Text = "(core count)";
             // 
-            // cpumake_Label
+            // cpuFrequency_Label
             // 
-            this.cpumake_Label.AutoSize = true;
-            this.cpumake_Label.Location = new System.Drawing.Point(9, 30);
-            this.cpumake_Label.Name = "cpumake_Label";
-            this.cpumake_Label.Size = new System.Drawing.Size(43, 17);
-            this.cpumake_Label.TabIndex = 1;
-            this.cpumake_Label.Text = "label1";
-            // 
-            // cpuid_Label
-            // 
-            this.cpuid_Label.AutoSize = true;
-            this.cpuid_Label.Location = new System.Drawing.Point(9, 3);
-            this.cpuid_Label.Name = "cpuid_Label";
-            this.cpuid_Label.Size = new System.Drawing.Size(43, 17);
-            this.cpuid_Label.TabIndex = 0;
-            this.cpuid_Label.Text = "label1";
+            this.cpuFrequency_Label.AutoSize = true;
+            this.cpuFrequency_Label.Location = new System.Drawing.Point(145, 91);
+            this.cpuFrequency_Label.Name = "cpuFrequency_Label";
+            this.cpuFrequency_Label.Size = new System.Drawing.Size(73, 17);
+            this.cpuFrequency_Label.TabIndex = 1;
+            this.cpuFrequency_Label.Text = "(frequency)";
             // 
             // tabPage3
             // 
@@ -338,9 +351,10 @@
             // results_dataGridView
             // 
             this.results_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.results_dataGridView.Location = new System.Drawing.Point(6, 50);
+            this.results_dataGridView.Location = new System.Drawing.Point(6, 34);
             this.results_dataGridView.Name = "results_dataGridView";
-            this.results_dataGridView.Size = new System.Drawing.Size(592, 317);
+            this.results_dataGridView.RowHeadersVisible = false;
+            this.results_dataGridView.Size = new System.Drawing.Size(608, 350);
             this.results_dataGridView.TabIndex = 3;
             // 
             // resultstablepath_Input
@@ -348,7 +362,7 @@
             this.resultstablepath_Input.AutoSize = true;
             this.resultstablepath_Input.Location = new System.Drawing.Point(3, 6);
             this.resultstablepath_Input.Name = "resultstablepath_Input";
-            this.resultstablepath_Input.Size = new System.Drawing.Size(133, 17);
+            this.resultstablepath_Input.Size = new System.Drawing.Size(132, 17);
             this.resultstablepath_Input.TabIndex = 2;
             this.resultstablepath_Input.Text = "Path to Results Table:";
             // 
@@ -406,7 +420,7 @@
             this.textfilewrite_Checkbox.AutoSize = true;
             this.textfilewrite_Checkbox.Location = new System.Drawing.Point(9, 54);
             this.textfilewrite_Checkbox.Name = "textfilewrite_Checkbox";
-            this.textfilewrite_Checkbox.Size = new System.Drawing.Size(128, 21);
+            this.textfilewrite_Checkbox.Size = new System.Drawing.Size(126, 21);
             this.textfilewrite_Checkbox.TabIndex = 2;
             this.textfilewrite_Checkbox.Text = "Write To Text File";
             this.textfilewrite_Checkbox.UseVisualStyleBackColor = true;
@@ -461,6 +475,117 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // cpuName_Label
+            // 
+            this.cpuName_Label.AutoSize = true;
+            this.cpuName_Label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cpuName_Label.Location = new System.Drawing.Point(6, 38);
+            this.cpuName_Label.Name = "cpuName_Label";
+            this.cpuName_Label.Size = new System.Drawing.Size(43, 21);
+            this.cpuName_Label.TabIndex = 18;
+            this.cpuName_Label.Text = "CPU:";
+            // 
+            // gpuName_Label
+            // 
+            this.gpuName_Label.AutoSize = true;
+            this.gpuName_Label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpuName_Label.Location = new System.Drawing.Point(329, 38);
+            this.gpuName_Label.Name = "gpuName_Label";
+            this.gpuName_Label.Size = new System.Drawing.Size(44, 21);
+            this.gpuName_Label.TabIndex = 19;
+            this.gpuName_Label.Text = "GPU:";
+            // 
+            // staticcpuFrequency_Label
+            // 
+            this.staticcpuFrequency_Label.AutoSize = true;
+            this.staticcpuFrequency_Label.Location = new System.Drawing.Point(7, 91);
+            this.staticcpuFrequency_Label.Name = "staticcpuFrequency_Label";
+            this.staticcpuFrequency_Label.Size = new System.Drawing.Size(83, 17);
+            this.staticcpuFrequency_Label.TabIndex = 20;
+            this.staticcpuFrequency_Label.Text = "Clock Speed:";
+            // 
+            // staticcpuCores_Label
+            // 
+            this.staticcpuCores_Label.AutoSize = true;
+            this.staticcpuCores_Label.Location = new System.Drawing.Point(7, 122);
+            this.staticcpuCores_Label.Name = "staticcpuCores_Label";
+            this.staticcpuCores_Label.Size = new System.Drawing.Size(45, 17);
+            this.staticcpuCores_Label.TabIndex = 21;
+            this.staticcpuCores_Label.Text = "Cores:";
+            // 
+            // staticcpuThreads_Label
+            // 
+            this.staticcpuThreads_Label.AutoSize = true;
+            this.staticcpuThreads_Label.Location = new System.Drawing.Point(7, 154);
+            this.staticcpuThreads_Label.Name = "staticcpuThreads_Label";
+            this.staticcpuThreads_Label.Size = new System.Drawing.Size(58, 17);
+            this.staticcpuThreads_Label.TabIndex = 22;
+            this.staticcpuThreads_Label.Text = "Threads:";
+            // 
+            // staticgpuCores_Frequency
+            // 
+            this.staticgpuCores_Frequency.AutoSize = true;
+            this.staticgpuCores_Frequency.Location = new System.Drawing.Point(330, 122);
+            this.staticgpuCores_Frequency.Name = "staticgpuCores_Frequency";
+            this.staticgpuCores_Frequency.Size = new System.Drawing.Size(120, 17);
+            this.staticgpuCores_Frequency.TabIndex = 26;
+            this.staticgpuCores_Frequency.Text = "Stream Processors:";
+            // 
+            // staticgpuFrequency_Label
+            // 
+            this.staticgpuFrequency_Label.AutoSize = true;
+            this.staticgpuFrequency_Label.Location = new System.Drawing.Point(330, 91);
+            this.staticgpuFrequency_Label.Name = "staticgpuFrequency_Label";
+            this.staticgpuFrequency_Label.Size = new System.Drawing.Size(83, 17);
+            this.staticgpuFrequency_Label.TabIndex = 25;
+            this.staticgpuFrequency_Label.Text = "Clock Speed:";
+            // 
+            // gpuCores_Label
+            // 
+            this.gpuCores_Label.AutoSize = true;
+            this.gpuCores_Label.Location = new System.Drawing.Point(488, 122);
+            this.gpuCores_Label.Name = "gpuCores_Label";
+            this.gpuCores_Label.Size = new System.Drawing.Size(78, 17);
+            this.gpuCores_Label.TabIndex = 24;
+            this.gpuCores_Label.Text = "(core count)";
+            // 
+            // gpuFrequency_Label
+            // 
+            this.gpuFrequency_Label.AutoSize = true;
+            this.gpuFrequency_Label.Location = new System.Drawing.Point(488, 91);
+            this.gpuFrequency_Label.Name = "gpuFrequency_Label";
+            this.gpuFrequency_Label.Size = new System.Drawing.Size(73, 17);
+            this.gpuFrequency_Label.TabIndex = 23;
+            this.gpuFrequency_Label.Text = "(frequency)";
+            // 
+            // os_Label
+            // 
+            this.os_Label.AutoSize = true;
+            this.os_Label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.os_Label.Location = new System.Drawing.Point(6, 230);
+            this.os_Label.Name = "os_Label";
+            this.os_Label.Size = new System.Drawing.Size(73, 21);
+            this.os_Label.TabIndex = 27;
+            this.os_Label.Text = "OS Build:";
+            // 
+            // staticgpuTMU_Label
+            // 
+            this.staticgpuTMU_Label.AutoSize = true;
+            this.staticgpuTMU_Label.Location = new System.Drawing.Point(330, 154);
+            this.staticgpuTMU_Label.Name = "staticgpuTMU_Label";
+            this.staticgpuTMU_Label.Size = new System.Drawing.Size(143, 17);
+            this.staticgpuTMU_Label.TabIndex = 29;
+            this.staticgpuTMU_Label.Text = "Texture Mapping Units:";
+            // 
+            // gpuTMU_Label
+            // 
+            this.gpuTMU_Label.AutoSize = true;
+            this.gpuTMU_Label.Location = new System.Drawing.Point(488, 154);
+            this.gpuTMU_Label.Name = "gpuTMU_Label";
+            this.gpuTMU_Label.Size = new System.Drawing.Size(74, 17);
+            this.gpuTMU_Label.TabIndex = 28;
+            this.gpuTMU_Label.Text = "(tmu count)";
+            // 
             // BenchmarkingUtilityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -482,7 +607,7 @@
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PC_CPU)).EndInit();
-            //((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -507,10 +632,9 @@
         private System.Windows.Forms.RichTextBox cpuscript_TextBox;
         private System.Windows.Forms.ComboBox scriptviewer_ComboBox;
         private System.Windows.Forms.RichTextBox gpuscript_TextBox;
-        private System.Windows.Forms.Label memory_Label;
-        private System.Windows.Forms.Label cpuclock_Label;
-        private System.Windows.Forms.Label cpumake_Label;
-        private System.Windows.Forms.Label cpuid_Label;
+        private System.Windows.Forms.Label cpuThreads_Label;
+        private System.Windows.Forms.Label cpuCores_Label;
+        private System.Windows.Forms.Label cpuFrequency_Label;
         private System.Windows.Forms.Button info_Button;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Diagnostics.PerformanceCounter PC_CPU;
@@ -528,6 +652,18 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView results_dataGridView;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label staticgpuCores_Frequency;
+        private System.Windows.Forms.Label staticgpuFrequency_Label;
+        private System.Windows.Forms.Label gpuCores_Label;
+        private System.Windows.Forms.Label gpuFrequency_Label;
+        private System.Windows.Forms.Label staticcpuThreads_Label;
+        private System.Windows.Forms.Label staticcpuCores_Label;
+        private System.Windows.Forms.Label staticcpuFrequency_Label;
+        private System.Windows.Forms.Label gpuName_Label;
+        private System.Windows.Forms.Label cpuName_Label;
+        private System.Windows.Forms.Label os_Label;
+        private System.Windows.Forms.Label staticgpuTMU_Label;
+        private System.Windows.Forms.Label gpuTMU_Label;
     }
 }
 

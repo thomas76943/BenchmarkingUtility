@@ -30,7 +30,9 @@ namespace BenchmarkingUtility
             this.Text = "Benchmarking Utility1";
             //scriptviewer_ComboBox.SelectedIndex = 0;
             CreateRadioButtons();
-
+            cpuoutput_Label.Text = "";
+            gpuoutput_Label.Text = "";
+            populate_info_labels();
             //Populating the ComboBox for viewing the benchmark scripts
             foreach (string x in matches)
             {
@@ -94,6 +96,23 @@ namespace BenchmarkingUtility
             }
         }
 
+        private void populate_info_labels()
+        {
+            string cpuName = HardwareInfo.GetCPUName();
+            string cpuName_Short = cpuName.Substring(0, cpuName.Length - 10);
+            cpuName_Label.Text = "CPU  -  " + cpuName_Short;
+
+            cpuFrequency_Label.Text = HardwareInfo.GetCPUFrequency().ToString() + "MHz";
+            cpuCores_Label.Text = HardwareInfo.GetCPUCores().ToString();
+            cpuThreads_Label.Text = HardwareInfo.GetCPUThreads().ToString();
+            gpuName_Label.Text = "GPU  -  " + HardwareInfo.GetGPUName();
+            gpuFrequency_Label.Text = (HardwareInfo.GetGPUFrequency() / 1000).ToString() + "MHz";
+            gpuCores_Label.Text = HardwareInfo.GetGPUCUDACores().ToString();
+            gpuTMU_Label.Text = HardwareInfo.GetGPUTextureUnits().ToString();
+            os_Label.Text = "OS Build  -  " + Environment.OSVersion.ToString();
+
+        }
+
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             var radioButton = (RadioButton)sender;
@@ -116,11 +135,7 @@ namespace BenchmarkingUtility
 
         private void info_Button_Click(object sender, EventArgs e)
         {
-            cpuid_Label.Text = HardwareInfo.GetProcessorId();
-            cpumake_Label.Text = HardwareInfo.GetCPUManufacturer();
-            cpuclock_Label.Text = HardwareInfo.GetCPUCurrentClockSpeed().ToString();
-            memory_Label.Text = HardwareInfo.GetPhysicalMemory();
-            HardwareInfo.getGPUInfo();
+            populate_info_labels();
         }
 
         private void BenchmarkingUtilityForm_Load(object sender, EventArgs e)
@@ -149,6 +164,20 @@ namespace BenchmarkingUtility
         
         private void gui_BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+
+            string cpu_Name = HardwareInfo.GetCPUName();
+            double cpu_Frequency = HardwareInfo.GetCPUFrequency();
+            string gpu_Name = HardwareInfo.GetGPUName();
+            double gpu_Frequency = HardwareInfo.GetGPUFrequency() / 1000;
+            int gpu_Cores = HardwareInfo.GetGPUCUDACores();
+
+            string filename = @"results.csv";
+            if (!File.Exists(filename))
+            {
+                string header = "Test #" + "," + "Algorithm" + "," + "CPU/GPU" + "," + "Time" + "," + "CPU Name" + "," + "CPU Frequency" + "," + "GPU Name" + "," + "GPU Frequency" + "," + "GPU Cores" + Environment.NewLine;
+                File.WriteAllText(filename, header);
+            }
+
             //Variables 'cpu' and 'gpu' assigned to state of corresponding checkboxes in options tab
             bool cpu = cpu_Checkbox.Checked;
             bool gpu = gpu_Checkbox.Checked;
@@ -195,6 +224,13 @@ namespace BenchmarkingUtility
                 timer.Stop();
                 //BackgroundWorker result set to the total elapsed time of the CPU stopwatch
                 e.Result = timer.Elapsed;
+
+                string[] rows = File.ReadAllLines(filename);
+
+                string details = rows.Length + "," + codetorun + ",CPU," + timer.Elapsed.ToString() + "," + cpu_Name + "," + cpu_Frequency + "," + gpu_Name + "," + gpu_Frequency + "," + gpu_Cores + Environment.NewLine;
+
+                File.AppendAllText(filename, details);
+
             }
            
             //If "Run GPU Algorithms" checkbox is true, run GPU algorithm corresponding to the radio button choice
@@ -220,6 +256,12 @@ namespace BenchmarkingUtility
                 }
                 //Total elapsed time of the GPU stopwatch appened to the BackgroundWorker result
                 e.Result += "*" + timer.Elapsed;
+
+                string[] rows = File.ReadAllLines(filename);
+
+                string details = rows.Length + "," + codetorun + ",GPU," + timer.Elapsed.ToString() + "," + cpu_Name + "," + cpu_Frequency + "," + gpu_Name + "," + gpu_Frequency + "," + gpu_Cores + Environment.NewLine;
+
+                File.AppendAllText(filename, details);
             }
         }
 
@@ -233,8 +275,8 @@ namespace BenchmarkingUtility
         {
             DataTable resultstable = new DataTable();
             DataRow row = resultstable.NewRow();
-            OpenFileDialog loadresults = new OpenFileDialog();
-            loadresults.InitialDirectory = @"C:\Users\mooret-aw\Documents\BenchmarkingUtility";
+            FileDialog loadresults = new OpenFileDialog();
+            //loadresults.InitialDirectory = @"C:\Users\mooret-aw\Documents\BenchmarkingUtility";
             loadresults.DefaultExt = ".txt";
             string pathtotable;
 
@@ -243,24 +285,23 @@ namespace BenchmarkingUtility
                 pathtotable = loadresults.FileName;
                 Console.WriteLine(pathtotable);
                 string[] rows = File.ReadAllLines(pathtotable);
-                string[] fields = rows[0].Split(',');
-                int columns = fields.GetLength(0);
+                string[] headers = rows[0].Split(',');
 
-                for (int i = 0; i < columns; i++)
+                for (int i = 0; i < headers.Length; i++)
                 {
-                    resultstable.Columns.Add(fields[i]);
+                    resultstable.Columns.Add(headers[i]);
                 }
 
-                for (int i = 1; i < rows.GetLength(0); i++)
+                string[] fields;
+                for (int i = 1; i < rows.Length; i++)
                 {
                     fields = rows[i].Split(',');
                     row = resultstable.NewRow();
 
-                    for (int j = 0; j < columns; j++)
+                    for (int j = 0; j < fields.Length; j++)
                     {
                         row[j] = fields[j];
                     }
-
                     resultstable.Rows.Add(row);
                 }
                 results_dataGridView.DataSource = resultstable;

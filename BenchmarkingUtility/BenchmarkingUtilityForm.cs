@@ -28,7 +28,7 @@ namespace BenchmarkingUtility
 
         public BenchmarkingUtilityForm()
         {
-            NVIDIA.Initialize();
+            //NVIDIA.Initialize();
             InitializeComponent();
             //Window has a fixed size and the maximise button is disabled
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -304,6 +304,7 @@ namespace BenchmarkingUtility
             {
                 pathtotable = loadresults.FileName;
                 Console.WriteLine(pathtotable);
+                resultstable_TextBox.Text = loadresults.FileName;
                 string[] rows = File.ReadAllLines(pathtotable);
                 string[] headers = rows[0].Split(',');
 

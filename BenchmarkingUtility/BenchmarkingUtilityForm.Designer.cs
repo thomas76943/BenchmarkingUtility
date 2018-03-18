@@ -185,9 +185,8 @@
             this.gpuoutput_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpuoutput_Label.Location = new System.Drawing.Point(346, 239);
             this.gpuoutput_Label.Name = "gpuoutput_Label";
-            this.gpuoutput_Label.Size = new System.Drawing.Size(97, 17);
+            this.gpuoutput_Label.Size = new System.Drawing.Size(0, 17);
             this.gpuoutput_Label.TabIndex = 10;
-            this.gpuoutput_Label.Text = "gpuoutputlabel";
             // 
             // cpuoutput_Label
             // 
@@ -195,9 +194,8 @@
             this.cpuoutput_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cpuoutput_Label.Location = new System.Drawing.Point(346, 66);
             this.cpuoutput_Label.Name = "cpuoutput_Label";
-            this.cpuoutput_Label.Size = new System.Drawing.Size(95, 17);
+            this.cpuoutput_Label.Size = new System.Drawing.Size(0, 17);
             this.cpuoutput_Label.TabIndex = 9;
-            this.cpuoutput_Label.Text = "cpuoutputlabel";
             // 
             // run_button
             // 

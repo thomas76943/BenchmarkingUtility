@@ -11,11 +11,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NvAPIWrapper;
-using NvAPIWrapper.GPU;
-using NvAPIWrapper.Display;
-using NvAPIWrapper.Mosaic;
-using NvAPIWrapper.Native;
+//using NvAPIWrapper;
+//using NvAPIWrapper.GPU;
+//using NvAPIWrapper.Display;
+//using NvAPIWrapper.Mosaic;
+//using NvAPIWrapper.Native;
 
 namespace BenchmarkingUtility
 {
@@ -28,7 +28,7 @@ namespace BenchmarkingUtility
 
         public BenchmarkingUtilityForm()
         {
-            NVIDIA.Initialize();
+            //NVIDIA.Initialize();
             InitializeComponent();
             //Window has a fixed size and the maximise button is disabled
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -38,7 +38,7 @@ namespace BenchmarkingUtility
             CreateRadioButtons();
             cpuoutput_Label.Text = "";
             gpuoutput_Label.Text = "";
-            populate_info_labels();
+            populate_info();
             //Populating the ComboBox for viewing the benchmark scripts
             foreach (string x in matches)
             {
@@ -102,7 +102,7 @@ namespace BenchmarkingUtility
             }
         }
 
-        private void populate_info_labels()
+        private void populate_info()
         {
             string cpuName = HardwareInfo.GetCPUName();
             string cpuName_Short = cpuName.Substring(0, cpuName.Length - 10);
@@ -141,7 +141,7 @@ namespace BenchmarkingUtility
 
         private void info_Button_Click(object sender, EventArgs e)
         {
-            populate_info_labels();
+            populate_info();
         }
 
         private void BenchmarkingUtilityForm_Load(object sender, EventArgs e)
@@ -290,7 +290,7 @@ namespace BenchmarkingUtility
             cpuscript_TextBox.Text = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"CPUAlgorithms\" + scriptviewer_ComboBox.Text);
             gpuscript_TextBox.Text = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"GPUAlgorithms\" + scriptviewer_ComboBox.Text);
         }
-
+        //rename to resultstable_Click
         private void resultstable_Button_Click(object sender, EventArgs e)
         {
             DataTable resultstable = new DataTable();

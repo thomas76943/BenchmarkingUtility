@@ -94,3 +94,7 @@ C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\Benc
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\CsvHelper.xml
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\NvAPIWrapper.Net.dll
 C:\Users\mooret\Documents\A_Level_Computing\C#_Programs\BenchmarkingUtility\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\NvAPIWrapper.Net.xml
+C:\Users\mooret-aw\Documents\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\CsvHelper.dll
+C:\Users\mooret-aw\Documents\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\NvAPIWrapper.Net.dll
+C:\Users\mooret-aw\Documents\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\CsvHelper.xml
+C:\Users\mooret-aw\Documents\BenchmarkingUtility\BenchmarkingUtility\bin\Debug\NvAPIWrapper.Net.xml

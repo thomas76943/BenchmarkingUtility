@@ -304,6 +304,7 @@ namespace BenchmarkingUtility
             {
                 pathtotable = loadresults.FileName;
                 Console.WriteLine(pathtotable);
+                resultstable_TextBox.Text = loadresults.FileName;
                 string[] rows = File.ReadAllLines(pathtotable);
                 string[] headers = rows[0].Split(',');
 

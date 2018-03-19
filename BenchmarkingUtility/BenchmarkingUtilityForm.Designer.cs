@@ -74,7 +74,6 @@
             this.gpu_Checkbox = new System.Windows.Forms.CheckBox();
             this.cpu_Checkbox = new System.Windows.Forms.CheckBox();
             this.PC_CPU = new System.Diagnostics.PerformanceCounter();
-            this.PC_GPU = new System.Diagnostics.PerformanceCounter();
             this.graphtimer = new System.Windows.Forms.Timer(this.components);
             this.gui_BackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -86,7 +85,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.results_dataGridView)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PC_CPU)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -259,7 +257,7 @@
             this.staticgpuTMU_Label.AutoSize = true;
             this.staticgpuTMU_Label.Location = new System.Drawing.Point(330, 154);
             this.staticgpuTMU_Label.Name = "staticgpuTMU_Label";
-            this.staticgpuTMU_Label.Size = new System.Drawing.Size(143, 17);
+            this.staticgpuTMU_Label.Size = new System.Drawing.Size(144, 17);
             this.staticgpuTMU_Label.TabIndex = 29;
             this.staticgpuTMU_Label.Text = "Texture Mapping Units:";
             // 
@@ -518,7 +516,7 @@
             this.textfilewrite_Checkbox.AutoSize = true;
             this.textfilewrite_Checkbox.Location = new System.Drawing.Point(9, 54);
             this.textfilewrite_Checkbox.Name = "textfilewrite_Checkbox";
-            this.textfilewrite_Checkbox.Size = new System.Drawing.Size(126, 21);
+            this.textfilewrite_Checkbox.Size = new System.Drawing.Size(128, 21);
             this.textfilewrite_Checkbox.TabIndex = 2;
             this.textfilewrite_Checkbox.Text = "Write To Text File";
             this.textfilewrite_Checkbox.UseVisualStyleBackColor = true;
@@ -552,12 +550,6 @@
             this.PC_CPU.CategoryName = "Processor";
             this.PC_CPU.CounterName = "% Processor Time";
             this.PC_CPU.InstanceName = "_Total";
-            // 
-            // PC_GPU
-            // 
-            this.PC_GPU.CategoryName = "GPU Engine";
-            this.PC_GPU.CounterName = "Utilization Percentage";
-            this.PC_GPU.InstanceName = "_Total";
             // 
             // graphtimer
             // 
@@ -594,7 +586,6 @@
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PC_CPU)).EndInit();
-            //((System.ComponentModel.ISupportInitialize)(this.PC_GPU)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -626,7 +617,6 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Diagnostics.PerformanceCounter PC_CPU;
         private System.Windows.Forms.ProgressBar cpu_progressbar;
-        private System.Diagnostics.PerformanceCounter PC_GPU;
         private System.Windows.Forms.Timer graphtimer;
         private System.Windows.Forms.ProgressBar gpu_progressbar;
         private System.Windows.Forms.Label gpu_percentage1;

@@ -11,11 +11,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using NvAPIWrapper;
-//using NvAPIWrapper.GPU;
-//using NvAPIWrapper.Display;
-//using NvAPIWrapper.Mosaic;
-//using NvAPIWrapper.Native;
+using NvAPIWrapper;
+using NvAPIWrapper.GPU;
+using NvAPIWrapper.Display;
+using NvAPIWrapper.Mosaic;
+using NvAPIWrapper.Native;
 
 namespace BenchmarkingUtility
 {
@@ -28,7 +28,7 @@ namespace BenchmarkingUtility
 
         public BenchmarkingUtilityForm()
         {
-            //NVIDIA.Initialize();
+           // NVIDIA.Initialize();
             InitializeComponent();
             //Window has a fixed size and the maximise button is disabled
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -161,7 +161,7 @@ namespace BenchmarkingUtility
 
             //var navigation = new Dictionary<object, Action>
             //{
-            //"GPU Dynamic Performance States", () =>
+            //    { "GPU Dynamic Performance States", () =>
             //ConsoleNavigation.PrintNavigation(
             //PhysicalGPU.GetPhysicalGPUs()
             //                    .ToDictionary(gpu => (object)gpu.ToString(), gpu => new Action(
@@ -171,8 +171,10 @@ namespace BenchmarkingUtility
             //                               "PhysicalGPU.DynamicPerformanceStatesInfo");
             //                       })),
             //                "PhysicalGPU.GetPhysicalGPUs()", "Select a GPU to show dynamic performance state domains")
-            //}
-        }
+            //    }
+            //};
+            //    Console.WriteLine(navigation.ToString());
+            }
 
         private void gui_BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {

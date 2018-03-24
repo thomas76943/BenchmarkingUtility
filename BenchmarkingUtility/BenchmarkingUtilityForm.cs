@@ -155,10 +155,19 @@ namespace BenchmarkingUtility
             float cpu_f = PC_CPU.NextValue();
             cpu_progressbar.Value = (int)cpu_f;
             cpu_percentage1.Text = string.Format("{0:0.00}%", cpu_f);
+            Console.WriteLine(cpu_percentage1.Text);
 
-            var gputest = PhysicalGPU.GetPhysicalGPUs().ToDictionary
+            var gpuinfo = PhysicalGPU.GetPhysicalGPUs().ToDictionary
             (gpu => (object)gpu.ToString(), gpu => gpu.DynamicPerformanceStatesInfo);
-            Console.WriteLine(gputest[HardwareInfo.GetGPUName()].ToString());
+            Console.WriteLine(gpuinfo[HardwareInfo.GetGPUName()].ToString());
+
+            string gpu_find = gpuinfo[HardwareInfo.GetGPUName()].ToString();
+            string[] gpu_temp = { };
+            gpu_temp = gpu_find.Split(new char[] { '%', '=' });
+
+            string gpu_f = gpu_temp[1].Substring(1);
+            gpu_progressbar.Value = Convert.ToInt32(gpu_f);
+            gpu_percentage1.Text = string.Format("{0:0.00}%", gpu_f);
         }
 
         private void gui_BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

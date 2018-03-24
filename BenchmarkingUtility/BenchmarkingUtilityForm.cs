@@ -159,9 +159,9 @@ namespace BenchmarkingUtility
 
             var gpuinfo = PhysicalGPU.GetPhysicalGPUs().ToDictionary
             (gpu => (object)gpu.ToString(), gpu => gpu.DynamicPerformanceStatesInfo);
-            Console.WriteLine(gpuinfo[HardwareInfo.GetGPUName()].ToString());
+            Console.WriteLine(gpuinfo["GeForce GTX 780"].ToString());
 
-            string gpu_find = gpuinfo[HardwareInfo.GetGPUName()].ToString();
+            string gpu_find = gpuinfo["GeForce GTX 780"].ToString();
             string[] gpu_temp = { };
             gpu_temp = gpu_find.Split(new char[] { '%', '=' });
 

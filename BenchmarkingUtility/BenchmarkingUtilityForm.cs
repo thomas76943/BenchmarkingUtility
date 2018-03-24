@@ -29,7 +29,7 @@ namespace BenchmarkingUtility
 
         public BenchmarkingUtilityForm()
         {
-            //NVIDIA.Initialize();
+            NVIDIA.Initialize();
             InitializeComponent();
             //Window has a fixed size and the maximise button is disabled
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -157,14 +157,23 @@ namespace BenchmarkingUtility
             cpu_percentage1.Text = string.Format("{0:0.00}%", cpu_f);
             Console.WriteLine(cpu_percentage1.Text);
 
-            var gpuinfo = PhysicalGPU.GetPhysicalGPUs().ToDictionary
-            (gpu => (object)gpu.ToString(), gpu => gpu.DynamicPerformanceStatesInfo);
-            Console.WriteLine(gpuinfo["GeForce GTX 780"].ToString());
+            PhysicalGPU[] devices_temp = PhysicalGPU.GetPhysicalGPUs();
+            PhysicalGPU[] devices;
 
-            string gpu_find = gpuinfo["GeForce GTX 780"].ToString();
+            if (devices_temp.Length > 1)
+            {
+                devices = new PhysicalGPU[1] { devices_temp[0] };  
+            }
+            else
+            {
+                devices = devices_temp;
+            }
+
+            var gpuinfo = devices.ToDictionary(gpu => (object)gpu.ToString(), gpu => gpu.DynamicPerformanceStatesInfo);
+            Console.WriteLine(gpuinfo[HardwareInfo.GetGPUName()].ToString());
+            string gpu_find = gpuinfo[HardwareInfo.GetGPUName()].ToString();
             string[] gpu_temp = { };
             gpu_temp = gpu_find.Split(new char[] { '%', '=' });
-
             string gpu_f = gpu_temp[1].Substring(1);
             gpu_progressbar.Value = Convert.ToInt32(gpu_f);
             gpu_percentage1.Text = string.Format("{0:0.00}%", gpu_f);

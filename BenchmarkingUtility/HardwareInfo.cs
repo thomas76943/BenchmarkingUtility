@@ -11,6 +11,9 @@ namespace BenchmarkingUtility
 {
     class HardwareInfo
     {
+
+        static Device[] devices = Device.Devices;
+
         public static string GetCPUName()
         {
             string cpu_Name = "";
@@ -67,25 +70,21 @@ namespace BenchmarkingUtility
 
         public static string GetGPUName()
         {
-            var devices = Device.Devices;
             return devices[0].ToString();
         }
 
         public static int GetGPUFrequency()
         {
-            var devices = Device.Devices;
             return devices[0].Properties.ClockRate;
         }
 
         public static int GetGPUCUDACores()
         {
-            var devices = Device.Devices;
             return devices[0].Cores;
         }
 
         public static int GetGPUTextureUnits()
         {
-            var devices = Device.Devices;
             return (devices[0].Cores / devices[0].Attributes.MultiprocessorCount);
         }
     }

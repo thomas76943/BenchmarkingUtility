@@ -29,7 +29,7 @@ namespace BenchmarkingUtility
 
         public BenchmarkingUtilityForm()
         {
-            NVIDIA.Initialize();
+            //NVIDIA.Initialize();
             InitializeComponent();
             //Window has a fixed size and the maximise button is disabled
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -156,25 +156,9 @@ namespace BenchmarkingUtility
             cpu_progressbar.Value = (int)cpu_f;
             cpu_percentage1.Text = string.Format("{0:0.00}%", cpu_f);
 
-            //float gpu_f = PC_GPU.NextValue();
-            //gpu_progressbar.Value = (int)gpu_f;
-            //gpu_percentage1.Text = string.Format("{0:0.00}%", gpu_f);
-
-            var navigation = new Dictionary<object, Action>
-            {
-                { "GPU Dynamic Performance States", () =>
-            ConsoleNavigation.PrintNavigation(
-            PhysicalGPU.GetPhysicalGPUs()
-                                .ToDictionary(gpu => (object)gpu.ToString(), gpu => new Action(
-                                   () =>
-                                   {
-                                       ConsoleNavigation.PrintObject(gpu.DynamicPerformanceStatesInfo,
-                                           "PhysicalGPU.DynamicPerformanceStatesInfo");
-                                   })),
-                            "PhysicalGPU.GetPhysicalGPUs()", "Select a GPU to show dynamic performance state domains")
-                }
-            };
-            Console.WriteLine(navigation.ToString());
+            var gputest = PhysicalGPU.GetPhysicalGPUs().ToDictionary
+            (gpu => (object)gpu.ToString(), gpu => gpu.DynamicPerformanceStatesInfo);
+            Console.WriteLine(gputest[HardwareInfo.GetGPUName()].ToString());
         }
 
         private void gui_BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

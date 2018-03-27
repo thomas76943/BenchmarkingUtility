@@ -70,13 +70,19 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.pythondir_textboxlabel = new System.Windows.Forms.Label();
             this.pythondir_textbox = new System.Windows.Forms.TextBox();
-            this.textfilewrite_Checkbox = new System.Windows.Forms.CheckBox();
             this.gpu_Checkbox = new System.Windows.Forms.CheckBox();
             this.cpu_Checkbox = new System.Windows.Forms.CheckBox();
             this.PC_CPU = new System.Diagnostics.PerformanceCounter();
             this.graphtimer = new System.Windows.Forms.Timer(this.components);
             this.gui_BackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.cpudirectory_TextBox = new System.Windows.Forms.TextBox();
+            this.gpudirectory_TextBox = new System.Windows.Forms.TextBox();
+            this.cpudirectory_Label = new System.Windows.Forms.Label();
+            this.gpudirectory_Label = new System.Windows.Forms.Label();
+            this.cpualgorithms_Button = new System.Windows.Forms.Button();
+            this.gpualgorithms_Button = new System.Windows.Forms.Button();
+            this.pythondirectory_Button = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -257,7 +263,7 @@
             this.staticgpuTMU_Label.AutoSize = true;
             this.staticgpuTMU_Label.Location = new System.Drawing.Point(330, 154);
             this.staticgpuTMU_Label.Name = "staticgpuTMU_Label";
-            this.staticgpuTMU_Label.Size = new System.Drawing.Size(144, 17);
+            this.staticgpuTMU_Label.Size = new System.Drawing.Size(143, 17);
             this.staticgpuTMU_Label.TabIndex = 29;
             this.staticgpuTMU_Label.Text = "Texture Mapping Units:";
             // 
@@ -482,9 +488,15 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.White;
+            this.tabPage5.Controls.Add(this.pythondirectory_Button);
+            this.tabPage5.Controls.Add(this.gpualgorithms_Button);
+            this.tabPage5.Controls.Add(this.cpualgorithms_Button);
+            this.tabPage5.Controls.Add(this.gpudirectory_Label);
+            this.tabPage5.Controls.Add(this.cpudirectory_Label);
+            this.tabPage5.Controls.Add(this.gpudirectory_TextBox);
+            this.tabPage5.Controls.Add(this.cpudirectory_TextBox);
             this.tabPage5.Controls.Add(this.pythondir_textboxlabel);
             this.tabPage5.Controls.Add(this.pythondir_textbox);
-            this.tabPage5.Controls.Add(this.textfilewrite_Checkbox);
             this.tabPage5.Controls.Add(this.gpu_Checkbox);
             this.tabPage5.Controls.Add(this.cpu_Checkbox);
             this.tabPage5.Location = new System.Drawing.Point(4, 39);
@@ -497,29 +509,19 @@
             // pythondir_textboxlabel
             // 
             this.pythondir_textboxlabel.AutoSize = true;
-            this.pythondir_textboxlabel.Location = new System.Drawing.Point(6, 98);
+            this.pythondir_textboxlabel.Location = new System.Drawing.Point(6, 55);
             this.pythondir_textboxlabel.Name = "pythondir_textboxlabel";
-            this.pythondir_textboxlabel.Size = new System.Drawing.Size(266, 17);
+            this.pythondir_textboxlabel.Size = new System.Drawing.Size(210, 17);
             this.pythondir_textboxlabel.TabIndex = 4;
-            this.pythondir_textboxlabel.Text = "Python Directory (numpy + numba required)";
+            this.pythondir_textboxlabel.Text = "Python Directory (numba required)";
             // 
             // pythondir_textbox
             // 
-            this.pythondir_textbox.Location = new System.Drawing.Point(9, 116);
+            this.pythondir_textbox.Location = new System.Drawing.Point(9, 73);
             this.pythondir_textbox.Name = "pythondir_textbox";
             this.pythondir_textbox.Size = new System.Drawing.Size(245, 25);
             this.pythondir_textbox.TabIndex = 3;
             this.pythondir_textbox.Text = "C:\\Users\\mooret\\Anaconda2";
-            // 
-            // textfilewrite_Checkbox
-            // 
-            this.textfilewrite_Checkbox.AutoSize = true;
-            this.textfilewrite_Checkbox.Location = new System.Drawing.Point(9, 54);
-            this.textfilewrite_Checkbox.Name = "textfilewrite_Checkbox";
-            this.textfilewrite_Checkbox.Size = new System.Drawing.Size(128, 21);
-            this.textfilewrite_Checkbox.TabIndex = 2;
-            this.textfilewrite_Checkbox.Text = "Write To Text File";
-            this.textfilewrite_Checkbox.UseVisualStyleBackColor = true;
             // 
             // gpu_Checkbox
             // 
@@ -565,6 +567,68 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // cpudirectory_TextBox
+            // 
+            this.cpudirectory_TextBox.Location = new System.Drawing.Point(9, 137);
+            this.cpudirectory_TextBox.Name = "cpudirectory_TextBox";
+            this.cpudirectory_TextBox.Size = new System.Drawing.Size(245, 25);
+            this.cpudirectory_TextBox.TabIndex = 5;
+            // 
+            // gpudirectory_TextBox
+            // 
+            this.gpudirectory_TextBox.Location = new System.Drawing.Point(9, 209);
+            this.gpudirectory_TextBox.Name = "gpudirectory_TextBox";
+            this.gpudirectory_TextBox.Size = new System.Drawing.Size(245, 25);
+            this.gpudirectory_TextBox.TabIndex = 6;
+            // 
+            // cpudirectory_Label
+            // 
+            this.cpudirectory_Label.AutoSize = true;
+            this.cpudirectory_Label.Location = new System.Drawing.Point(6, 117);
+            this.cpudirectory_Label.Name = "cpudirectory_Label";
+            this.cpudirectory_Label.Size = new System.Drawing.Size(204, 17);
+            this.cpudirectory_Label.TabIndex = 7;
+            this.cpudirectory_Label.Text = "Custom CPU Algorithms Directory";
+            // 
+            // gpudirectory_Label
+            // 
+            this.gpudirectory_Label.AutoSize = true;
+            this.gpudirectory_Label.Location = new System.Drawing.Point(6, 189);
+            this.gpudirectory_Label.Name = "gpudirectory_Label";
+            this.gpudirectory_Label.Size = new System.Drawing.Size(205, 17);
+            this.gpudirectory_Label.TabIndex = 8;
+            this.gpudirectory_Label.Text = "Custom GPU Algorithms Directory";
+            // 
+            // cpualgorithms_Button
+            // 
+            this.cpualgorithms_Button.Location = new System.Drawing.Point(271, 137);
+            this.cpualgorithms_Button.Name = "cpualgorithms_Button";
+            this.cpualgorithms_Button.Size = new System.Drawing.Size(75, 25);
+            this.cpualgorithms_Button.TabIndex = 9;
+            this.cpualgorithms_Button.Text = "Browse";
+            this.cpualgorithms_Button.UseVisualStyleBackColor = true;
+            this.cpualgorithms_Button.Click += new System.EventHandler(this.cpualgorithms_Button_Click);
+            // 
+            // gpualgorithms_Button
+            // 
+            this.gpualgorithms_Button.Location = new System.Drawing.Point(271, 209);
+            this.gpualgorithms_Button.Name = "gpualgorithms_Button";
+            this.gpualgorithms_Button.Size = new System.Drawing.Size(75, 25);
+            this.gpualgorithms_Button.TabIndex = 10;
+            this.gpualgorithms_Button.Text = "Browse";
+            this.gpualgorithms_Button.UseVisualStyleBackColor = true;
+            this.gpualgorithms_Button.Click += new System.EventHandler(this.gpualgorithms_Button_Click);
+            // 
+            // pythondirectory_Button
+            // 
+            this.pythondirectory_Button.Location = new System.Drawing.Point(271, 72);
+            this.pythondirectory_Button.Name = "pythondirectory_Button";
+            this.pythondirectory_Button.Size = new System.Drawing.Size(75, 25);
+            this.pythondirectory_Button.TabIndex = 11;
+            this.pythondirectory_Button.Text = "Browse";
+            this.pythondirectory_Button.UseVisualStyleBackColor = true;
+            this.pythondirectory_Button.Click += new System.EventHandler(this.pythondirectory_Button_Click);
+            // 
             // BenchmarkingUtilityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -600,7 +664,6 @@
         private System.Windows.Forms.Label gpu_Label;
         private System.Windows.Forms.Label cpu_Label;
         private System.Windows.Forms.Button run_button;
-        private System.Windows.Forms.CheckBox textfilewrite_Checkbox;
         private System.Windows.Forms.CheckBox gpu_Checkbox;
         private System.Windows.Forms.CheckBox cpu_Checkbox;
         private System.Windows.Forms.Label pythondir_textboxlabel;
@@ -640,6 +703,13 @@
         private System.Windows.Forms.Label os_Label;
         private System.Windows.Forms.Label staticgpuTMU_Label;
         private System.Windows.Forms.Label gpuTMU_Label;
+        private System.Windows.Forms.Label gpudirectory_Label;
+        private System.Windows.Forms.Label cpudirectory_Label;
+        private System.Windows.Forms.TextBox gpudirectory_TextBox;
+        private System.Windows.Forms.TextBox cpudirectory_TextBox;
+        private System.Windows.Forms.Button gpualgorithms_Button;
+        private System.Windows.Forms.Button cpualgorithms_Button;
+        private System.Windows.Forms.Button pythondirectory_Button;
     }
 }
 

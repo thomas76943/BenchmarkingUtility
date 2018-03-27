@@ -18,14 +18,18 @@ using NvAPIWrapper.Mosaic;
 using NvAPIWrapper.Native;
 using System.Runtime.InteropServices;
 
+
 namespace BenchmarkingUtility
 {
     public partial class BenchmarkingUtilityForm : MetroFramework.Forms.MetroForm
     {
         string codetorun;
         string[] labels = new string[2];
-        List<string> comboOptions = new List<string>() { };
+        string cpupath = "";
+        string gpupath = "";
         List<string> matches = new List<string>();
+        List<string> comboOptions = new List<string>() { };
+
 
         public BenchmarkingUtilityForm()
         {
@@ -34,8 +38,8 @@ namespace BenchmarkingUtility
             //Window has a fixed size and the maximise button is disabled
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Text = "Benchmarking Utility1";
-            //scriptviewer_ComboBox.SelectedIndex = 0;
+            this.Text = "Benchmarking Utility";
+
             CreateRadioButtons();
             cpuoutput_Label.Text = "";
             gpuoutput_Label.Text = "";
@@ -50,7 +54,18 @@ namespace BenchmarkingUtility
 
         public void CreateRadioButtons()
         {
-            DirectoryInfo cpufiles = new DirectoryInfo(@"CPUAlgorithms");
+            algorithmmatches_Panel.Controls.Clear();
+            matches.Clear();
+            if (string.IsNullOrWhiteSpace(cpudirectory_TextBox.Text))
+            {
+                cpupath = @"CPUAlgorithms";
+            }
+            if (string.IsNullOrWhiteSpace(gpudirectory_TextBox.Text))
+            {
+                gpupath = @"GPUAlgorithms";
+            }
+
+            DirectoryInfo cpufiles = new DirectoryInfo(cpupath);
             FileInfo[] CFiles = cpufiles.GetFiles();
             List<string> cpufilesfound = new List<string>();
 
@@ -59,7 +74,7 @@ namespace BenchmarkingUtility
                 cpufilesfound.Add(file.ToString());
             }
 
-            DirectoryInfo gpufiles = new DirectoryInfo(@"GPUAlgorithms");
+            DirectoryInfo gpufiles = new DirectoryInfo(gpupath);
             FileInfo[] GFiles = gpufiles.GetFiles();
             List<string> gpufilesfound = new List<string>();
             foreach (FileInfo file in GFiles)
@@ -108,7 +123,6 @@ namespace BenchmarkingUtility
             string cpuName = HardwareInfo.GetCPUName();
             string cpuName_Short = cpuName.Substring(0, cpuName.Length - 10);
             cpuName_Label.Text = "CPU  -  " + cpuName_Short;
-
             cpuFrequency_Label.Text = HardwareInfo.GetCPUFrequency().ToString() + "MHz";
             cpuCores_Label.Text = HardwareInfo.GetCPUCores().ToString();
             cpuThreads_Label.Text = HardwareInfo.GetCPUThreads().ToString();
@@ -117,7 +131,6 @@ namespace BenchmarkingUtility
             gpuCores_Label.Text = HardwareInfo.GetGPUCUDACores().ToString();
             gpuTMU_Label.Text = HardwareInfo.GetGPUTextureUnits().ToString();
             os_Label.Text = "OS Build  -  " + Environment.OSVersion.ToString();
-
         }
 
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
@@ -154,12 +167,11 @@ namespace BenchmarkingUtility
         {
             float cpu_f = PC_CPU.NextValue();
             cpu_progressbar.Value = (int)cpu_f;
-            cpu_percentage1.Text = string.Format("{0:0.00}%", cpu_f);
-            Console.WriteLine(cpu_percentage1.Text);
+            cpu_percentage1.Text = string.Format("{0:0}%", cpu_f);
 
             PhysicalGPU[] devices_temp = PhysicalGPU.GetPhysicalGPUs();
             PhysicalGPU[] devices;
-
+       
             if (devices_temp.Length > 1)
             {
                 devices = new PhysicalGPU[1] { devices_temp[0] };  
@@ -170,11 +182,12 @@ namespace BenchmarkingUtility
             }
 
             var gpuinfo = devices.ToDictionary(gpu => (object)gpu.ToString(), gpu => gpu.DynamicPerformanceStatesInfo);
-            Console.WriteLine(gpuinfo[HardwareInfo.GetGPUName()].ToString());
             string gpu_find = gpuinfo[HardwareInfo.GetGPUName()].ToString();
             string[] gpu_temp = { };
+
             gpu_temp = gpu_find.Split(new char[] { '%', '=' });
             string gpu_f = gpu_temp[1].Substring(1);
+
             gpu_progressbar.Value = Convert.ToInt32(gpu_f);
             gpu_percentage1.Text = string.Format("{0:0.00}%", gpu_f);
         }
@@ -192,6 +205,7 @@ namespace BenchmarkingUtility
 
             string cpu_Name = HardwareInfo.GetCPUName();
             double cpu_Frequency = HardwareInfo.GetCPUFrequency();
+            int cpu_cores = HardwareInfo.GetCPUCores();
             string gpu_Name = HardwareInfo.GetGPUName();
             double gpu_Frequency = HardwareInfo.GetGPUFrequency() / 1000;
             int gpu_Cores = HardwareInfo.GetGPUCUDACores();
@@ -199,14 +213,13 @@ namespace BenchmarkingUtility
             string filename = @"results.csv";
             if (!File.Exists(filename))
             {
-                string header = "Test #" + "," + "Algorithm" + "," + "CPU/GPU" + "," + "Time" + "," + "CPU Name" + "," + "CPU Frequency" + "," + "GPU Name" + "," + "GPU Frequency" + "," + "GPU Cores" + Environment.NewLine;
+                string header = "Test #" + "," + "Algorithm" + "," + "CPU/GPU" + "," + "Time" + "," + "CPU Name" + "," + "CPU Frequency" + "," + "CPU Cores" + "," + "GPU Name" + "," + "GPU Frequency" + "," + "GPU Cores" + Environment.NewLine;
                 File.WriteAllText(filename, header);
             }
 
             //Variables 'cpu' and 'gpu' assigned to state of corresponding checkboxes in options tab
             bool cpu = cpu_Checkbox.Checked;
             bool gpu = gpu_Checkbox.Checked;
-            //string algorithmpath = Algorithms.cpupaths[radiochoice - 1];
             string algorithmpath = codetorun;
             string extension = "";
             int charcount = algorithmpath.Length - 1;
@@ -237,10 +250,7 @@ namespace BenchmarkingUtility
                         break;
                     case "cs":
                         Console.WriteLine("C# - CPU Running");
-                        cpuoutput = Algorithms.RunCS(codetorun);
-                        break;
-                    case "java":
-                        Console.WriteLine("Java - CPU Running");
+                        cpuoutput = Algorithms.RunCS(AppDomain.CurrentDomain.BaseDirectory + @"CPUAlgorithms\" + codetorun);
                         break;
                     default:
                         Console.WriteLine("Unrecognised");
@@ -251,11 +261,8 @@ namespace BenchmarkingUtility
                 e.Result = timer.Elapsed;
 
                 string[] rows = File.ReadAllLines(filename);
-
-                string details = rows.Length + "," + codetorun + ",CPU," + timer.Elapsed.ToString() + "," + cpu_Name + "," + cpu_Frequency + "," + gpu_Name + "," + gpu_Frequency + "," + gpu_Cores + Environment.NewLine;
-
+                string details = rows.Length + "," + codetorun + ",CPU," + timer.Elapsed.ToString() + "," + cpu_Name + "," + cpu_Frequency + "," + cpu_cores + "," + gpu_Name + "," + gpu_Frequency + "," + gpu_Cores + Environment.NewLine;
                 File.AppendAllText(filename, details);
-
             }
            
             //If "Run GPU Algorithms" checkbox is true, run GPU algorithm corresponding to the radio button choice
@@ -271,9 +278,8 @@ namespace BenchmarkingUtility
                         gpuoutput = Algorithms.RunPython(pythondir_textbox.Text, AppDomain.CurrentDomain.BaseDirectory + @"GPUAlgorithms\" + codetorun);
                         break;
                     case "cs":
-                        gpuoutput = Algorithms.RunCS(codetorun);
-                        break;
-                    case "java":
+                        Console.WriteLine("C# - GPU Running");
+                        gpuoutput = Algorithms.RunCS(AppDomain.CurrentDomain.BaseDirectory + @"CPUAlgorithms\" + codetorun);
                         break;
                     default:
                         Console.WriteLine("Unrecognised");
@@ -283,9 +289,7 @@ namespace BenchmarkingUtility
                 e.Result += "*" + timer.Elapsed;
 
                 string[] rows = File.ReadAllLines(filename);
-
-                string details = rows.Length + "," + codetorun + ",GPU," + timer.Elapsed.ToString() + "," + cpu_Name + "," + cpu_Frequency + "," + gpu_Name + "," + gpu_Frequency + "," + gpu_Cores + Environment.NewLine;
-
+                string details = rows.Length + "," + codetorun + ",GPU," + timer.Elapsed.ToString() + "," + cpu_Name + "," + cpu_Frequency + "," + cpu_cores + "," + gpu_Name + "," + gpu_Frequency + "," + gpu_Cores + Environment.NewLine;
                 File.AppendAllText(filename, details);
             }
         }
@@ -332,6 +336,43 @@ namespace BenchmarkingUtility
                 }
                 results_dataGridView.DataSource = resultstable;
             }           
+        }
+
+        private void cpualgorithms_Button_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog cpuload = new FolderBrowserDialog();
+            DialogResult result = cpuload.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                cpupath = cpuload.SelectedPath;
+                cpudirectory_TextBox.Text = cpupath;
+                CreateRadioButtons();
+            }
+        }
+
+        private void gpualgorithms_Button_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog gpuload = new FolderBrowserDialog();
+            DialogResult result = gpuload.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                gpupath = gpuload.SelectedPath;
+                gpudirectory_TextBox.Text = gpupath;
+                CreateRadioButtons();
+            }
+        }
+
+        private void pythondirectory_Button_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog pythonexe = new FolderBrowserDialog();
+            DialogResult result = pythonexe.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                pythondir_textbox.Text = pythonexe.SelectedPath;
+            }
         }
     }
 }

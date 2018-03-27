@@ -12,7 +12,7 @@ namespace BenchmarkingUtility
 {
     class Algorithms
     {
-        //File Paths for Algorithms
+        //Combined File Paths for Algorithms
         public static string[] cpupaths = Directory.GetFiles(Path.Combine(Application.StartupPath, @"CPUAlgorithms\"));
         public static string[] gpupaths = Directory.GetFiles(Path.Combine(Application.StartupPath, @"GPUAlgorithms\"));
         
@@ -42,11 +42,16 @@ namespace BenchmarkingUtility
                 {
                     string stderr = p.StandardError.ReadToEnd();
                     string finaloutput = p.StandardOutput.ReadToEnd();
-                    Debug.WriteLine("stderr: " + stderr + "\nTime: ");
+                    Debug.WriteLine("stderr: " + stderr);
                     return finaloutput;
                 }
             }
-            //User Notified if Process Failed
+            //User Notified if File Issue Found
+            catch (IOException e)
+            {
+                Console.WriteLine(e);
+            }
+            //User Notified if Process 
             catch (Exception)
             {
                 Console.WriteLine("Failed");
@@ -69,7 +74,7 @@ namespace BenchmarkingUtility
                 {
                     string stderr = p.StandardError.ReadToEnd();
                     string finaloutput = p.StandardOutput.ReadToEnd();
-                    Debug.WriteLine("stderr: " + stderr + "\nTime: ");
+                    Debug.WriteLine("stderr: " + stderr);
                     return finaloutput;
                 }
             }
@@ -99,6 +104,10 @@ namespace BenchmarkingUtility
                         Console.WriteLine("Line number " + CompErr.Line + ", Error Number: " + CompErr.ErrorNumber + ", '" + CompErr.ErrorText + ";" + Environment.NewLine + Environment.NewLine);
                     }
                 }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e);
             }
 
             catch (Exception)
